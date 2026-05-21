@@ -1,0 +1,5 @@
+Background and project images sourced from Pexels (https://www.pexels.com, free license).
+Photo IDs used: 2280549, 2280571, 2280561, 2280547, 356040, 3639031, 3861969, 3993449,
+4386464, 5477894, 5722728, 6072890, 7372310, 7681060, 2156311.
+
+Original template images backed up under images_backup_20260521/.
