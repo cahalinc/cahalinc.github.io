@@ -41,7 +41,7 @@ $comments = htmlspecialchars($comments);
 // Enter the email address that you want to emails to be sent to.
 
 //$address = "example@youremail.net";
-$address = "clapatform@gmail.com";
+$address = "keiohigh2nd@gmail.com";
 
 
 // Configuration option.
