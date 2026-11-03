@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SNS Content Studio — Autonomous Bio Lab OS</title>
+<style>
+:root{
+  --bg:247 249 251; --panel:255 255 255; --raised:241 245 249; --line:214 222 231;
+  --text:15 27 41; --muted:91 106 124; --faint:140 154 170;
+  --accent:37 99 235; --accent-soft:219 231 255;
+  --ok:5 150 105; --warn:202 138 4; --err:220 38 38;
+  color-scheme:light;
+}
+.dark{
+  --bg:9 13 20; --panel:17 24 34; --raised:25 34 47; --line:38 50 66;
+  --text:226 235 243; --muted:141 156 173; --faint:99 114 132;
+  --accent:96 152 255; --accent-soft:24 44 79;
+  --ok:45 197 145; --warn:245 183 49; --err:248 113 113;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  background:rgb(var(--bg)); color:rgb(var(--text));
+  font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  -webkit-font-smoothing:antialiased; font-size:14px; line-height:1.5;
+}
+a{color:rgb(var(--accent));text-decoration:none}
+button{font-family:inherit;font-size:inherit;cursor:pointer}
+.mono{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+
+/* layout */
+header{
+  position:sticky;top:0;z-index:20;background:rgb(var(--panel));
+  border-bottom:1px solid rgb(var(--line));
+}
+.hbar{display:flex;align-items:center;gap:12px;padding:12px 20px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:10px;font-weight:650}
+.dot{width:10px;height:10px;border-radius:50%;background:rgb(var(--accent));box-shadow:0 0 0 4px rgb(var(--accent-soft))}
+.brand small{display:block;color:rgb(var(--muted));font-weight:450;font-size:11px}
+.spacer{flex:1}
+.btn{
+  border:1px solid rgb(var(--line));background:rgb(var(--panel));color:rgb(var(--text));
+  padding:7px 12px;border-radius:8px;font-weight:550;white-space:nowrap;
+}
+.btn:hover{border-color:rgb(var(--accent))}
+.btn.primary{background:rgb(var(--accent));color:#fff;border-color:transparent}
+.btn.sm{padding:4px 9px;font-size:12px;border-radius:7px}
+
+/* KPI tiles */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;padding:0 20px 12px}
+.kpi{background:rgb(var(--raised));border:1px solid rgb(var(--line));border-radius:10px;padding:10px 12px}
+.kpi .v{font-size:22px;font-weight:700;letter-spacing:-.02em}
+.kpi .l{color:rgb(var(--muted));font-size:11px;margin-top:2px}
+.kpi .s{color:rgb(var(--faint));font-size:11px}
+
+/* filters */
+.filters{display:flex;gap:8px;padding:10px 20px;flex-wrap:wrap;align-items:center;border-bottom:1px solid rgb(var(--line))}
+input,select,textarea{
+  font-family:inherit;font-size:13px;color:rgb(var(--text));background:rgb(var(--panel));
+  border:1px solid rgb(var(--line));border-radius:8px;padding:7px 9px;
+}
+input:focus,select:focus,textarea:focus{outline:none;border-color:rgb(var(--accent))}
+input[type=search]{min-width:220px}
+.seg{display:inline-flex;border:1px solid rgb(var(--line));border-radius:8px;overflow:hidden}
+.seg button{border:0;background:transparent;padding:7px 12px;color:rgb(var(--muted))}
+.seg button.on{background:rgb(var(--accent));color:#fff}
+
+main{padding:16px 20px 60px}
+
+/* board */
+.board{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;align-items:start}
+@media(max-width:1100px){.board{grid-template-columns:repeat(2,1fr)}}
+.col{background:rgb(var(--raised));border:1px solid rgb(var(--line));border-radius:12px;padding:10px;min-height:120px}
+.col h3{margin:2px 4px 10px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:rgb(var(--muted));display:flex;justify-content:space-between}
+.col h3 .n{color:rgb(var(--faint))}
+.card{
+  background:rgb(var(--panel));border:1px solid rgb(var(--line));border-radius:10px;
+  padding:10px;margin-bottom:8px;cursor:pointer;
+}
+.card:hover{border-color:rgb(var(--accent))}
+.card .t{font-weight:600;font-size:13px;margin-bottom:6px;line-height:1.35}
+.badges{display:flex;gap:5px;flex-wrap:wrap}
+.badge{font-size:10.5px;padding:2px 7px;border-radius:999px;border:1px solid rgb(var(--line));color:rgb(var(--muted));white-space:nowrap}
+.badge.pf{background:rgb(var(--accent-soft));border-color:transparent;color:rgb(var(--accent))}
+.card .m{margin-top:7px;font-size:11px;color:rgb(var(--faint));display:flex;gap:10px;flex-wrap:wrap}
+
+/* table */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid rgb(var(--line));vertical-align:top}
+th{color:rgb(var(--muted));font-weight:600;font-size:11px;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;position:sticky;top:0;background:rgb(var(--bg))}
+tr:hover td{background:rgb(var(--raised))}
+.tbl-wrap{border:1px solid rgb(var(--line));border-radius:12px;overflow:auto;max-height:70vh}
+.pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:999px}
+.st-idea{background:rgb(var(--raised));color:rgb(var(--muted))}
+.st-draft{background:rgb(var(--accent-soft));color:rgb(var(--accent))}
+.st-scheduled{background:rgba(202,138,4,.16);color:rgb(var(--warn))}
+.st-posted{background:rgba(5,150,105,.16);color:rgb(var(--ok))}
+.st-archived{background:transparent;color:rgb(var(--faint));border:1px dashed rgb(var(--line))}
+
+/* drawer */
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:40;display:none}
+.overlay.on{display:block}
+.drawer{
+  position:fixed;top:0;right:0;height:100vh;width:min(520px,100vw);z-index:50;
+  background:rgb(var(--panel));border-left:1px solid rgb(var(--line));
+  transform:translateX(100%);transition:transform .18s ease;overflow-y:auto;
+}
+.drawer.on{transform:translateX(0)}
+.drawer .dhead{position:sticky;top:0;background:rgb(var(--panel));border-bottom:1px solid rgb(var(--line));padding:14px 18px;display:flex;gap:10px;align-items:flex-start}
+.drawer .body{padding:16px 18px 60px}
+.fld{margin-bottom:14px}
+.fld label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:rgb(var(--muted));margin-bottom:5px}
+.fld input,.fld select,.fld textarea{width:100%}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.script{background:rgb(var(--raised));border:1px solid rgb(var(--line));border-radius:8px;padding:10px 12px;font-size:12.5px}
+.script li{margin-bottom:5px}
+.hashtags{display:flex;gap:5px;flex-wrap:wrap}
+.copybar{display:flex;gap:8px;align-items:center;margin-top:6px}
+.muted{color:rgb(var(--muted))}
+.sec-title{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:rgb(var(--muted));margin:18px 0 8px;border-top:1px solid rgb(var(--line));padding-top:14px}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:rgb(var(--text));color:rgb(var(--bg));padding:10px 16px;border-radius:8px;z-index:60;opacity:0;transition:opacity .2s;pointer-events:none;font-size:13px}
+.toast.on{opacity:1}
+.hidden{display:none}
+.count{color:rgb(var(--muted));font-size:12px}
+.barmini{height:6px;border-radius:4px;background:rgb(var(--raised));overflow:hidden;margin-top:6px}
+.barmini > i{display:block;height:100%;background:rgb(var(--accent))}
+dialog{border:1px solid rgb(var(--line));border-radius:12px;background:rgb(var(--panel));color:rgb(var(--text));max-width:640px;width:92vw;padding:0}
+dialog::backdrop{background:rgba(0,0,0,.45)}
+.dlg-h{padding:14px 18px;border-bottom:1px solid rgb(var(--line));font-weight:650;display:flex;justify-content:space-between;align-items:center}
+.dlg-b{padding:16px 18px}
+</style>
+</head>
+<body>
+<header>
+  <div class="hbar">
+    <div class="brand">
+      <span class="dot"></span>
+      <div>SNS Content Studio
+        <small>Autonomous Bio Lab OS — 認知拡大の投稿管理 &amp; 計測</small>
+      </div>
+    </div>
+    <span class="spacer"></span>
+    <div class="seg" id="viewSeg">
+      <button data-view="board" class="on">ボード</button>
+      <button data-view="table">テーブル</button>
+      <button data-view="analytics">分析</button>
+    </div>
+    <button class="btn sm" id="metricsBtn">計測を取込</button>
+    <button class="btn sm" id="exportBtn">書き出し</button>
+    <button class="btn sm" id="importBtn">読み込み</button>
+    <button class="btn sm" id="themeBtn" title="表示切替">◐</button>
+  </div>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="filters">
+    <input type="search" id="q" placeholder="タイトル・トピック・キャプション検索…" />
+    <select id="fPillar"><option value="">柱: すべて</option></select>
+    <select id="fPlatform"><option value="">媒体: すべて</option></select>
+    <select id="fFormat"><option value="">形式: すべて</option></select>
+    <select id="fStatus">
+      <option value="">状態: すべて</option>
+      <option value="idea">アイデア</option>
+      <option value="draft">下書き</option>
+      <option value="scheduled">予約済</option>
+      <option value="posted">投稿済</option>
+      <option value="archived">アーカイブ</option>
+    </select>
+    <select id="fFunnel">
+      <option value="">段階: すべて</option>
+      <option value="認知">認知</option>
+      <option value="興味">興味</option>
+      <option value="検討">検討</option>
+    </select>
+    <span class="spacer"></span>
+    <span class="count" id="count"></span>
+  </div>
+</header>
+
+<main>
+  <div id="viewBoard"></div>
+  <div id="viewTable" class="hidden"></div>
+  <div id="viewAnalytics" class="hidden"></div>
+</main>
+
+<!-- drawer -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer">
+  <div class="dhead">
+    <div style="flex:1">
+      <div class="badges" id="dBadges"></div>
+      <div style="font-weight:650;font-size:15px;margin-top:8px" id="dTitle"></div>
+      <div class="muted mono" style="font-size:11px;margin-top:3px" id="dId"></div>
+    </div>
+    <button class="btn sm" id="dClose">✕</button>
+  </div>
+  <div class="body" id="dBody"></div>
+</aside>
+
+<!-- export/import dialog -->
+<dialog id="dlg">
+  <div class="dlg-h"><span id="dlgTitle">…</span><button class="btn sm" id="dlgClose">✕</button></div>
+  <div class="dlg-b" id="dlgBody"></div>
+</dialog>
+
+<div class="toast" id="toast"></div>
+
+<script>
+"use strict";
+const LS_KEY = "biolab_sns_studio_v1";
+const STATUSES = ["idea","draft","scheduled","posted","archived"];
+const STATUS_LABEL = {idea:"アイデア",draft:"下書き",scheduled:"予約済",posted:"投稿済",archived:"アーカイブ"};
+const METRIC_FIELDS = [
+  ["impressions","インプレッション"],["reach","リーチ"],["video_views","動画視聴"],
+  ["likes","いいね"],["comments","コメント"],["saves","保存"],["shares","シェア"],
+  ["follows","フォロー増"],["link_clicks","リンククリック"],["watch_time_sec","視聴秒数計"]
+];
+
+let IDEAS = [];       // base ideas from json, merged with overrides
+let OVERRIDES = {};   // id -> {status, scheduled_at, posted_at, post_url, notes, metrics}
+let currentId = null;
+let sortKey = "id", sortDir = 1;
+
+/* ---------- storage ---------- */
+function loadOverrides(){
+  try{ OVERRIDES = JSON.parse(localStorage.getItem(LS_KEY)||"{}"); }
+  catch(e){ OVERRIDES = {}; }
+}
+function saveOverrides(){ localStorage.setItem(LS_KEY, JSON.stringify(OVERRIDES)); }
+function ov(id){
+  if(!OVERRIDES[id]) OVERRIDES[id] = {};
+  return OVERRIDES[id];
+}
+function applyOverrides(){
+  IDEAS.forEach(it=>{
+    const o = OVERRIDES[it.id];
+    if(!o) return;
+    ["status","scheduled_at","posted_at","post_url","notes"].forEach(k=>{
+      if(o[k]!==undefined && o[k]!==null) it[k]=o[k];
+    });
+    if(o.metrics){ it.metrics = Object.assign({}, it.metrics, o.metrics); }
+  });
+}
+
+/* ---------- utils ---------- */
+const $ = s=>document.querySelector(s);
+const el = (t,c,txt)=>{const e=document.createElement(t); if(c)e.className=c; if(txt!=null)e.textContent=txt; return e;};
+function toast(m){const t=$("#toast");t.textContent=m;t.classList.add("on");setTimeout(()=>t.classList.remove("on"),1600);}
+function num(n){ return (n==null||n==="")?null:Number(n); }
+function fmtNum(n){ return (n==null)?"–":Number(n).toLocaleString("ja-JP"); }
+function pct(n){ return (n==null)?"–":(n).toFixed(1)+"%"; }
+function copy(text){ navigator.clipboard.writeText(text).then(()=>toast("コピーしました")); }
+function esc(s){ return (s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+
+/* engagement = (likes+comments+saves+shares)/impressions */
+function engagement(m){
+  if(!m || m.impressions==null || m.impressions===0) return null;
+  const e=(m.likes||0)+(m.comments||0)+(m.saves||0)+(m.shares||0);
+  return e/m.impressions*100;
+}
+
+/* ---------- KPIs ---------- */
+function renderKpis(){
+  const posted = IDEAS.filter(i=>i.status==="posted");
+  const scheduled = IDEAS.filter(i=>i.status==="scheduled");
+  const drafts = IDEAS.filter(i=>i.status==="draft");
+  const totImp = posted.reduce((a,i)=>a+(i.metrics.impressions||0),0);
+  const engs = posted.map(i=>engagement(i.metrics)).filter(x=>x!=null);
+  const avgEng = engs.length? engs.reduce((a,b)=>a+b,0)/engs.length : null;
+  const follows = posted.reduce((a,i)=>a+(i.metrics.follows||0),0);
+  const tiles = [
+    {v:IDEAS.length, l:"投稿案の総数", s:"1000通りのネタ"},
+    {v:drafts.length, l:"下書き", s:""},
+    {v:scheduled.length, l:"予約済", s:"公開待ち"},
+    {v:posted.length, l:"投稿済", s:""},
+    {v:fmtNum(totImp), l:"累計インプレッション", s:"投稿済の合計"},
+    {v:avgEng==null?"–":avgEng.toFixed(1)+"%", l:"平均エンゲージ率", s:"(いいね+コメ+保存+シェア)/imp"},
+    {v:fmtNum(follows), l:"獲得フォロー", s:"投稿由来"},
+  ];
+  const c=$("#kpis"); c.innerHTML="";
+  tiles.forEach(t=>{
+    const d=el("div","kpi");
+    d.innerHTML=`<div class="v">${t.v}</div><div class="l">${t.l}</div>${t.s?`<div class="s">${t.s}</div>`:""}`;
+    c.appendChild(d);
+  });
+}
+
+/* ---------- filtering ---------- */
+function filtered(){
+  const q=$("#q").value.trim().toLowerCase();
+  const fp=$("#fPillar").value, fpl=$("#fPlatform").value, ff=$("#fFormat").value,
+        fs=$("#fStatus").value, fu=$("#fFunnel").value;
+  return IDEAS.filter(it=>{
+    if(fp && it.pillar!==fp) return false;
+    if(fpl && it.platform!==fpl) return false;
+    if(ff && it.format!==ff) return false;
+    if(fs && it.status!==fs) return false;
+    if(fu && it.funnel_stage!==fu) return false;
+    if(q){
+      const hay=(it.title+" "+it.topic+" "+it.caption+" "+it.pillar_name).toLowerCase();
+      if(!hay.includes(q)) return false;
+    }
+    return true;
+  });
+}
+
+/* ---------- board ---------- */
+function renderBoard(){
+  const data=filtered();
+  const wrap=$("#viewBoard"); wrap.innerHTML="";
+  const board=el("div","board");
+  STATUSES.forEach(st=>{
+    const items=data.filter(i=>i.status===st);
+    const col=el("div","col");
+    const h=el("h3"); h.innerHTML=`<span>${STATUS_LABEL[st]}</span><span class="n">${items.length}</span>`;
+    col.appendChild(h);
+    items.slice(0,120).forEach(it=> col.appendChild(cardEl(it)) );
+    if(items.length>120){ col.appendChild(el("div","count",`ほか ${items.length-120} 件（絞り込み推奨）`)); }
+    board.appendChild(col);
+  });
+  wrap.appendChild(board);
+}
+function cardEl(it){
+  const c=el("div","card"); c.onclick=()=>openDrawer(it.id);
+  const t=el("div","t",it.title);
+  const b=el("div","badges");
+  b.appendChild(badge(it.platform_name,"pf"));
+  b.appendChild(badge(it.format_name));
+  b.appendChild(badge(it.funnel_stage));
+  const m=el("div","m");
+  m.appendChild(el("span",null,it.pillar_name));
+  if(it.scheduled_at) m.appendChild(el("span",null,"⏰ "+it.scheduled_at.replace("T"," ")));
+  if(it.status==="posted"){ m.appendChild(el("span",null,"👁 "+fmtNum(it.metrics.impressions))); }
+  c.append(t,b,m); return c;
+}
+function badge(txt,cls){ const b=el("span","badge "+(cls||""),txt); return b; }
+
+/* ---------- table ---------- */
+const COLS=[
+  ["title","タイトル"],["pillar_name","柱"],["platform_name","媒体"],["format_name","形式"],
+  ["funnel_stage","段階"],["status","状態"],["scheduled_at","予約"],
+  ["_imp","imp"],["_eng","エンゲージ%"]
+];
+function val(it,k){
+  if(k==="_imp") return it.metrics.impressions;
+  if(k==="_eng") return engagement(it.metrics);
+  return it[k];
+}
+function renderTable(){
+  let data=filtered().slice();
+  data.sort((a,b)=>{
+    let x=val(a,sortKey), y=val(b,sortKey);
+    if(x==null)x=""; if(y==null)y="";
+    if(typeof x==="number"||typeof y==="number"){ x=Number(x)||0; y=Number(y)||0; }
+    return (x>y?1:x<y?-1:0)*sortDir;
+  });
+  const wrap=$("#viewTable");
+  const tw=el("div","tbl-wrap");
+  const tbl=el("table");
+  const thead=el("thead"); const tr=el("tr");
+  COLS.forEach(([k,label])=>{
+    const th=el("th",null,label+(sortKey===k?(sortDir>0?" ▲":" ▼"):""));
+    th.onclick=()=>{ if(sortKey===k)sortDir*=-1; else{sortKey=k;sortDir=1;} renderTable(); };
+    tr.appendChild(th);
+  });
+  thead.appendChild(tr); tbl.appendChild(thead);
+  const tb=el("tbody");
+  data.slice(0,600).forEach(it=>{
+    const r=el("tr"); r.style.cursor="pointer"; r.onclick=()=>openDrawer(it.id);
+    r.appendChild(el("td",null,it.title));
+    r.appendChild(el("td",null,it.pillar_name));
+    r.appendChild(el("td",null,it.platform_name));
+    r.appendChild(el("td",null,it.format_name));
+    r.appendChild(el("td",null,it.funnel_stage));
+    const stTd=el("td"); stTd.innerHTML=`<span class="pill st-${it.status}">${STATUS_LABEL[it.status]}</span>`; r.appendChild(stTd);
+    r.appendChild(el("td",null,it.scheduled_at?it.scheduled_at.replace("T"," "):"–"));
+    r.appendChild(el("td",null,fmtNum(it.metrics.impressions)));
+    r.appendChild(el("td",null,pct(engagement(it.metrics))));
+    tb.appendChild(r);
+  });
+  tbl.appendChild(tb); tw.appendChild(tbl);
+  wrap.innerHTML="";
+  const info=el("div","count",`${data.length} 件を表示（最大600行）`); info.style.margin="0 0 8px";
+  wrap.append(info,tw);
+}
+
+/* ---------- analytics ---------- */
+function renderAnalytics(){
+  const wrap=$("#viewAnalytics"); wrap.innerHTML="";
+  const posted=IDEAS.filter(i=>i.status==="posted" && i.metrics.impressions!=null);
+  if(posted.length===0){
+    wrap.appendChild(el("div","count","投稿済みで計測値が入った案がまだありません。投稿後にインプレッション等を入力すると、ここに柱・媒体別の効果が出ます。"));
+    return;
+  }
+  const agg=(keyFn)=>{
+    const m={};
+    posted.forEach(it=>{
+      const k=keyFn(it);
+      if(!m[k]) m[k]={n:0,imp:0,engSum:0,engN:0,follows:0};
+      m[k].n++; m[k].imp+=(it.metrics.impressions||0);
+      m[k].follows+=(it.metrics.follows||0);
+      const e=engagement(it.metrics); if(e!=null){m[k].engSum+=e;m[k].engN++;}
+    });
+    return Object.entries(m).map(([k,v])=>({
+      k, n:v.n, imp:v.imp, avgImp:v.imp/v.n,
+      eng:v.engN?v.engSum/v.engN:null, follows:v.follows
+    })).sort((a,b)=>b.avgImp-a.avgImp);
+  };
+  wrap.appendChild(sectionTable("柱（テーマ）別の効果", agg(i=>i.pillar_name)));
+  wrap.appendChild(sectionTable("媒体別の効果", agg(i=>i.platform_name)));
+  wrap.appendChild(sectionTable("形式別の効果", agg(i=>i.format_name)));
+  wrap.appendChild(sectionTable("フック別の効果", agg(i=>i.hook_type)));
+}
+function sectionTable(title, rows){
+  const maxImp=Math.max(...rows.map(r=>r.avgImp),1);
+  const box=el("div"); box.style.marginBottom="26px";
+  box.appendChild(el("div","sec-title",title));
+  const tw=el("div","tbl-wrap"); const tbl=el("table");
+  tbl.innerHTML=`<thead><tr><th>区分</th><th>投稿数</th><th>累計imp</th><th>平均imp</th><th>平均エンゲージ%</th><th>フォロー増</th><th style="width:160px">平均impの比較</th></tr></thead>`;
+  const tb=el("tbody");
+  rows.forEach(r=>{
+    const tr=el("tr");
+    tr.innerHTML=`<td>${esc(r.k)}</td><td>${r.n}</td><td>${fmtNum(r.imp)}</td>
+      <td>${fmtNum(Math.round(r.avgImp))}</td><td>${pct(r.eng)}</td><td>${fmtNum(r.follows)}</td>
+      <td><div class="barmini"><i style="width:${(r.avgImp/maxImp*100).toFixed(0)}%"></i></div></td>`;
+    tb.appendChild(tr);
+  });
+  tbl.appendChild(tb); tw.appendChild(tbl); box.appendChild(tw); return box;
+}
+
+/* ---------- drawer ---------- */
+function openDrawer(id){
+  currentId=id;
+  const it=IDEAS.find(i=>i.id===id);
+  $("#dBadges").innerHTML="";
+  [badge(it.platform_name,"pf"),badge(it.format_name),badge(it.funnel_stage),badge(it.pillar_name)]
+    .forEach(b=>$("#dBadges").appendChild(b));
+  $("#dTitle").textContent=it.title;
+  $("#dId").textContent=id+" · "+it.length_hint+" · 想定工数:"+it.effort;
+
+  const b=$("#dBody"); b.innerHTML="";
+
+  // status + schedule
+  const g=el("div","grid2");
+  g.appendChild(field("状態", selectEl(STATUSES.map(s=>[s,STATUS_LABEL[s]]), it.status, v=>{
+    setField(id,"status",v);
+    if(v==="posted" && !it.posted_at){ setField(id,"posted_at",new Date().toISOString().slice(0,16)); }
+    refreshAll(); openDrawer(id);
+  })));
+  g.appendChild(field("予約日時", inputEl("datetime-local", it.scheduled_at||"", v=> setField(id,"scheduled_at",v||null))));
+  b.appendChild(g);
+
+  const g2=el("div","grid2");
+  g2.appendChild(field("投稿日時", inputEl("datetime-local", it.posted_at||"", v=> setField(id,"posted_at",v||null))));
+  g2.appendChild(field("投稿URL", inputEl("url", it.post_url||"", v=> setField(id,"post_url",v||null),"https://…")));
+  b.appendChild(g2);
+
+  // caption
+  b.appendChild(el("div","sec-title","キャプション案"));
+  const cap=el("textarea"); cap.rows=6; cap.value=it.caption; cap.readOnly=true;
+  b.appendChild(cap);
+  const cbar=el("div","copybar");
+  const cb=el("button","btn sm","キャプションをコピー"); cb.onclick=()=>copy(it.caption);
+  cbar.appendChild(cb);
+  b.appendChild(cbar);
+
+  // on-screen text
+  b.appendChild(el("div","sec-title","画面テキスト / フック"));
+  const ost=el("div","script"); ost.textContent=it.on_screen_text; b.appendChild(ost);
+
+  // script
+  b.appendChild(el("div","sec-title", it.format_kind==="video"?"絵コンテ（ビート）":"構成"));
+  const sc=el("ol","script");
+  it.script.forEach(s=>{ const li=el("li",null,s); sc.appendChild(li); });
+  b.appendChild(sc);
+
+  // hashtags
+  b.appendChild(el("div","sec-title","ハッシュタグ"));
+  const ht=el("div","hashtags");
+  it.hashtags.forEach(h=> ht.appendChild(badge(h)) );
+  b.appendChild(ht);
+  const hbar=el("div","copybar");
+  const hb=el("button","btn sm","タグをコピー"); hb.onclick=()=>copy(it.hashtags.join(" "));
+  hbar.appendChild(hb); b.appendChild(hbar);
+
+  // notes
+  b.appendChild(el("div","sec-title","メモ"));
+  const nt=el("textarea"); nt.rows=3; nt.value=it.notes||""; nt.placeholder="制作メモ・素材の場所・担当など";
+  nt.oninput=()=> setField(id,"notes",nt.value);
+  b.appendChild(nt);
+
+  // metrics
+  b.appendChild(el("div","sec-title","計測値（投稿後に入力）"));
+  const mg=el("div","grid3");
+  METRIC_FIELDS.forEach(([k,label])=>{
+    mg.appendChild(field(label, inputEl("number", it.metrics[k]??"", v=>{
+      const o=ov(id); if(!o.metrics)o.metrics={}; o.metrics[k]=num(v); saveOverrides();
+      $("#dEng").textContent = "エンゲージ率: "+pct(engagement(mergedMetrics(id)));
+      renderKpis();
+    })));
+  });
+  b.appendChild(mg);
+  const eng=el("div","muted"); eng.id="dEng"; eng.style.marginTop="8px";
+  eng.textContent="エンゲージ率: "+pct(engagement(it.metrics));
+  b.appendChild(eng);
+
+  $("#overlay").classList.add("on");
+  $("#drawer").classList.add("on");
+}
+function mergedMetrics(id){ return IDEAS.find(i=>i.id===id).metrics; }
+function closeDrawer(){ $("#overlay").classList.remove("on"); $("#drawer").classList.remove("on"); currentId=null; }
+
+function setField(id,k,v){
+  ov(id)[k]=v; saveOverrides();
+  const it=IDEAS.find(i=>i.id===id); it[k]=v;
+}
+function field(label,control){
+  const f=el("div","fld"); f.appendChild(el("label",null,label)); f.appendChild(control); return f;
+}
+function inputEl(type,val,onchange,ph){
+  const i=el("input"); i.type=type; if(val!=null)i.value=val; if(ph)i.placeholder=ph;
+  i.onchange=()=>onchange(i.value); return i;
+}
+function selectEl(opts,val,onchange){
+  const s=el("select");
+  opts.forEach(([v,l])=>{ const o=el("option",null,l); o.value=v; if(v===val)o.selected=true; s.appendChild(o); });
+  s.onchange=()=>onchange(s.value); return s;
+}
+
+/* ---------- export / import ---------- */
+function toCSV(rows){
+  return rows.map(r=>r.map(c=>{
+    const s=(c==null)?"":String(c);
+    return /[",\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;
+  }).join(",")).join("\n");
+}
+function download(name,text,type){
+  const blob=new Blob([text],{type:type||"text/plain;charset=utf-8"});
+  const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download=name; a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),1000);
+}
+function openExport(){
+  $("#dlgTitle").textContent="書き出し";
+  const b=$("#dlgBody"); b.innerHTML="";
+  b.appendChild(el("p","muted","運用状態と計測値も含めて書き出します。JSONバックアップは「読み込み」で復元できます。"));
+  const mk=(label,fn)=>{ const btn=el("button","btn",label); btn.style.margin="4px 8px 4px 0"; btn.onclick=fn; return btn; };
+  b.appendChild(mk("コンテンツカレンダー(CSV)",()=>{
+    const rows=[["id","status","scheduled_at","posted_at","platform","format","funnel","pillar","title","post_url"]];
+    IDEAS.forEach(i=>rows.push([i.id,i.status,i.scheduled_at||"",i.posted_at||"",i.platform_name,i.format_name,i.funnel_stage,i.pillar_name,i.title,i.post_url||""]));
+    download("content_calendar.csv",toCSV(rows),"text/csv;charset=utf-8"); toast("CSVを保存");
+  }));
+  b.appendChild(mk("計測レポート(CSV)",()=>{
+    const head=["id","platform","pillar","title"].concat(METRIC_FIELDS.map(m=>m[0])).concat(["engagement_pct"]);
+    const rows=[head];
+    IDEAS.filter(i=>i.status==="posted").forEach(i=>{
+      const row=[i.id,i.platform_name,i.pillar_name,i.title].concat(METRIC_FIELDS.map(m=>i.metrics[m[0]]??"")).concat([engagement(i.metrics)?.toFixed(2)??""]);
+      rows.push(row);
+    });
+    download("metrics_report.csv",toCSV(rows),"text/csv;charset=utf-8"); toast("CSVを保存");
+  }));
+  b.appendChild(mk("状態バックアップ(JSON)",()=>{
+    download("studio_state.json",JSON.stringify(OVERRIDES,null,2),"application/json"); toast("JSONを保存");
+  }));
+  $("#dlg").showModal();
+}
+function openImport(){
+  $("#dlgTitle").textContent="読み込み（状態JSONの復元）";
+  const b=$("#dlgBody"); b.innerHTML="";
+  b.appendChild(el("p","muted","書き出した studio_state.json を貼り付けて復元します。既存の状態は上書きされます。"));
+  const ta=el("textarea"); ta.rows=10; ta.style.width="100%"; ta.placeholder='{"IDEA-...":{"status":"posted",...}}';
+  b.appendChild(ta);
+  const btn=el("button","btn primary","復元する"); btn.style.marginTop="10px";
+  btn.onclick=()=>{
+    try{
+      const obj=JSON.parse(ta.value);
+      OVERRIDES=obj; saveOverrides(); location.reload();
+    }catch(e){ toast("JSONを解析できません"); }
+  };
+  b.appendChild(btn);
+  $("#dlg").showModal();
+}
+function openMetricsImport(){
+  $("#dlgTitle").textContent="計測を取込（CSV貼り付け）";
+  const b=$("#dlgBody"); b.innerHTML="";
+  const cols=["id"].concat(METRIC_FIELDS.map(m=>m[0]));
+  b.appendChild(el("p","muted","各SNSの管理画面からエクスポートした数値を、1行目にヘッダを付けて貼り付けます。id 列で突き合わせ、投稿済みに変更します。"));
+  const help=el("div","script"); help.style.marginBottom="10px";
+  help.textContent="対応列: "+cols.join(", ");
+  b.appendChild(help);
+  const ta=el("textarea"); ta.rows=8; ta.style.width="100%";
+  ta.placeholder="id,impressions,reach,likes,saves\nIDEA-xxxxxxxxxx,12000,9000,340,88";
+  b.appendChild(ta);
+  const btn=el("button","btn primary","取り込む"); btn.style.marginTop="10px";
+  btn.onclick=()=>{
+    const res=importMetricsCSV(ta.value);
+    if(res.ok){ toast(res.n+" 件を反映"); $("#dlg").close(); refreshAll(); }
+    else toast(res.msg);
+  };
+  b.appendChild(btn);
+  $("#dlg").showModal();
+}
+function importMetricsCSV(text){
+  const lines=text.trim().split(/\r?\n/).filter(l=>l.trim());
+  if(lines.length<2) return {ok:false,msg:"データ行がありません"};
+  const parse=(l)=>{ // simple CSV
+    const out=[]; let cur="",q=false;
+    for(let i=0;i<l.length;i++){const c=l[i];
+      if(q){ if(c==='"'){ if(l[i+1]==='"'){cur+='"';i++;} else q=false; } else cur+=c; }
+      else { if(c===','){out.push(cur);cur="";} else if(c==='"')q=true; else cur+=c; }
+    } out.push(cur); return out;
+  };
+  const header=parse(lines[0]).map(h=>h.trim());
+  const idIdx=header.indexOf("id");
+  if(idIdx<0) return {ok:false,msg:"id 列が必要です"};
+  const validMetric=new Set(METRIC_FIELDS.map(m=>m[0]));
+  let n=0;
+  for(let r=1;r<lines.length;r++){
+    const cells=parse(lines[r]); const id=(cells[idIdx]||"").trim();
+    const it=IDEAS.find(i=>i.id===id); if(!it) continue;
+    const o=ov(id); if(!o.metrics)o.metrics={};
+    header.forEach((h,i)=>{ if(validMetric.has(h)){ const v=num(cells[i]); if(v!=null)o.metrics[h]=v; } });
+    if(o.status!=="posted"){ o.status="posted"; if(!o.posted_at)o.posted_at=new Date().toISOString().slice(0,16); }
+    n++;
+  }
+  saveOverrides();
+  return {ok:true,n};
+}
+
+/* ---------- view switching ---------- */
+let view="board";
+function switchView(v){
+  view=v;
+  $("#viewBoard").classList.toggle("hidden",v!=="board");
+  $("#viewTable").classList.toggle("hidden",v!=="table");
+  $("#viewAnalytics").classList.toggle("hidden",v!=="analytics");
+  document.querySelectorAll("#viewSeg button").forEach(b=>b.classList.toggle("on",b.dataset.view===v));
+  refreshAll();
+}
+function refreshAll(){
+  renderKpis();
+  if(view==="board") renderBoard();
+  else if(view==="table") renderTable();
+  else renderAnalytics();
+  const n=filtered().length;
+  $("#count").textContent=n+" / "+IDEAS.length+" 件";
+}
+
+/* ---------- populate filters ---------- */
+function fillFilters(){
+  const uniq=(k)=> [...new Set(IDEAS.map(i=>[i[k+"_name"]?i[k+"_name"]:i[k], i[k]]).map(a=>JSON.stringify(a)))].map(s=>JSON.parse(s));
+  function fill(sel,pairs){ pairs.sort((a,b)=>a[0].localeCompare(b[0],"ja")).forEach(([label,val])=>{ const o=el("option",null,label);o.value=val;sel.appendChild(o); }); }
+  fill($("#fPillar"), [...new Set(IDEAS.map(i=>i.pillar))].map(k=>[IDEAS.find(i=>i.pillar===k).pillar_name,k]));
+  fill($("#fPlatform"), [...new Set(IDEAS.map(i=>i.platform))].map(k=>[IDEAS.find(i=>i.platform===k).platform_name,k]));
+  fill($("#fFormat"), [...new Set(IDEAS.map(i=>i.format))].map(k=>[IDEAS.find(i=>i.format===k).format_name,k]));
+}
+
+/* ---------- theme ---------- */
+function initTheme(){
+  const saved=localStorage.getItem("studio_theme");
+  if(saved==="dark" || (!saved && matchMedia("(prefers-color-scheme:dark)").matches))
+    document.documentElement.classList.add("dark");
+}
+$("#themeBtn")?.addEventListener("click",()=>{
+  document.documentElement.classList.toggle("dark");
+  localStorage.setItem("studio_theme", document.documentElement.classList.contains("dark")?"dark":"light");
+});
+
+/* ---------- boot ---------- */
+async function boot(){
+  initTheme();
+  loadOverrides();
+  try{
+    const res=await fetch("content_ideas.json",{cache:"no-store"});
+    const data=await res.json();
+    IDEAS=data.ideas;
+  }catch(e){
+    document.querySelector("main").innerHTML=
+      '<div style="padding:40px;text-align:center"><h3>content_ideas.json を読み込めません</h3>'+
+      '<p class="muted">このページは <code>file://</code> では動きません。marketing/ ディレクトリで簡易サーバを起動してください：</p>'+
+      '<pre class="script" style="display:inline-block;text-align:left">cd marketing\npython3 -m http.server 3001\n# → http://localhost:3001/studio.html</pre></div>';
+    return;
+  }
+  applyOverrides();
+  fillFilters();
+  ["q","fPillar","fPlatform","fFormat","fStatus","fFunnel"].forEach(id=>{
+    const e=$("#"+id); e.addEventListener(id==="q"?"input":"change",refreshAll);
+  });
+  document.querySelectorAll("#viewSeg button").forEach(b=> b.onclick=()=>switchView(b.dataset.view));
+  $("#dClose").onclick=closeDrawer; $("#overlay").onclick=closeDrawer;
+  $("#exportBtn").onclick=openExport; $("#importBtn").onclick=openImport;
+  $("#metricsBtn").onclick=openMetricsImport;
+  $("#dlgClose").onclick=()=>$("#dlg").close();
+  document.addEventListener("keydown",e=>{ if(e.key==="Escape") closeDrawer(); });
+  refreshAll();
+}
+boot();
+</script>
+</body>
+</html>

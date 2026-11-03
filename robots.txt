@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# テンプレート由来のデモページはインデックス対象外
+Disallow: /typography.html
+Disallow: /multimedia.html
+Disallow: /shortcodes.html
+
+Sitemap: https://cahalinc.github.io/sitemap.xml
