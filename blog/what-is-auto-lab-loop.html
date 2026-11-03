@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Auto Lab Loop でいま回していること｜調査メモ｜カハール株式会社</title>
+  <meta name="description" content="設計・選抜・実験・データ反映。カハールが自社ラボで回す Auto Lab Loop の整理メモ。" />
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="canonical" href="https://cahalinc.github.io/blog/what-is-auto-lab-loop.html" />
+  <link rel="stylesheet" href="../css/cahal.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../index.html">
+        <img src="../images/logo.png" alt="" />
+        カハール株式会社
+      </a>
+      <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false">メニュー</button>
+      <nav class="nav" data-nav>
+        <a href="../index.html">ホーム</a>
+        <a href="../history.html">変遷</a>
+        <a href="../products.html">製品</a>
+        <a class="is-active" href="../blog.html">調査メモ</a>
+        <a href="../about.html">会社概要</a>
+        <a href="../members.html">メンバー</a>
+        <a class="nav-cta" href="../contact.html">相談する</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="padding-bottom:1.2rem;">
+      <div class="wrap article">
+        <span class="kicker">調査メモ</span>
+        <h1>Auto Lab Loop でいま回していること</h1>
+        <p class="article-meta">
+          <span>2026年6月</span>
+          <span>元リポジトリ: biology_resarch</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="section alt" style="padding-top:0;">
+      <div class="wrap article">
+        <article class="article-body">
+          <div class="callout">
+            自社の運用方針の説明です。他社ラボや他社論文の成果を、当社の実験結果として扱う記述はありません。
+          </div>
+
+          <p>
+            Auto Lab Loop と呼んでいるものは、派手な名前のわりに中身は単純だ。候補を出し、性質を見て、次に試すものを決め、実験し、結果を戻す。それを短い周期で繰り返す。
+          </p>
+
+          <h2>ループの中身</h2>
+          <ol>
+            <li>設計候補を出す</li>
+            <li>性質や制約で絞り込む</li>
+            <li>能動学習などで次の実験を選ぶ</li>
+            <li>自社ラボ、または接続した装置で実行する</li>
+            <li>データを取り込み、次の設計に反映する</li>
+          </ol>
+          <p>
+            ここでのポイントは「全部をロボットに任せる」ことより、「人が手を動かした実験も、同じログに乗る」ことだ。完全無人の前に、まずフィードバックが閉じるかを見ている。
+          </p>
+
+          <h2>なぜ自社ラボか</h2>
+          <p>
+            計算だけ渡して終わり、だと、現場のずれが戻ってこない。約1,000万円で整備した自社ラボは、そのずれを自分で拾うための場所だ。資本金の話とは別の設備投資である。
+          </p>
+          <p>
+            相談や共同研究でも、同じ視点で話す。「どの Loop を閉じたいか」が先で、装置のカタログ比較は後だ。
+          </p>
+
+          <h2>製品との対応</h2>
+          <ul>
+            <li>手順 RAG — 手法の裏取り（何をやるかが文献・SOP と食い違っていないか）</li>
+            <li>Experiment OS — 設計から解析までの実行面</li>
+            <li>BioSpatial OS — 見て掴んで置き直す操作面</li>
+          </ul>
+          <p>
+            上位の統合コンソールは開発中。いま公開しているのは、ループの部品として動くものだ。
+          </p>
+
+          <h2>元メモの場所</h2>
+          <p>
+            事業メモやハーフループ検証の詳細は <code>biology_resarch/research/notes/autolab_loop/</code> にある。このページは対外向けに短く書き直した版だ。
+          </p>
+        </article>
+
+        <div class="article-nav">
+          <a href="lab-automation-4types.html">← 前: 4分類</a>
+          <a href="why-protocol-rag.html">次: 手順 RAG →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>© 2026 カハール株式会社</div>
+      <div class="footer-links">
+        <a href="../blog.html">調査メモ</a>
+        <a href="../products.html">製品</a>
+        <a href="../contact.html">相談</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/site.js"></script>
+</body>
+</html>

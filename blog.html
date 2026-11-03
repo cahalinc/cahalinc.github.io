@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>調査メモ｜カハール株式会社</title>
+  <meta name="description" content="カハールが他リポジトリで調べたこと・整理したメモを、そのまま読める場所です。他社論文の転載ではありません。" />
+  <link rel="icon" href="favicon.ico" />
+  <link rel="canonical" href="https://cahalinc.github.io/blog.html" />
+  <link rel="stylesheet" href="css/cahal.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="index.html">
+        <img src="images/logo.png" alt="" />
+        カハール株式会社
+      </a>
+      <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false">メニュー</button>
+      <nav class="nav" data-nav>
+        <a href="index.html">ホーム</a>
+        <a href="history.html">変遷</a>
+        <a href="products.html">製品</a>
+        <a class="is-active" href="blog.html">調査メモ</a>
+        <a href="about.html">会社概要</a>
+        <a href="members.html">メンバー</a>
+        <a class="nav-cta" href="contact.html">相談する</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="padding-bottom:1.5rem;">
+      <div class="wrap">
+        <span class="kicker">Notes</span>
+        <h1>調べたことを、ここに置きます。</h1>
+        <p class="lead">
+          製品の裏で読んだ文献や、別リポジトリに溜めた整理メモを、サイト上でも辿れるようにしました。自社の論文発表ではありません。公開情報を読んで、自分の言葉で書き直したものです。
+        </p>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Articles</span>
+          <h2>読めるメモ</h2>
+          <p>長い調査ログから、いまの製品理解に効くものだけ抜き出しています。</p>
+        </div>
+
+        <div class="blog-list">
+          <a class="blog-item" href="blog/lab-automation-4types.html">
+            <div class="when">2026-06 · biology_resarch</div>
+            <h3>実験自動化を、Unit / Batch / Loop / Stream で分ける</h3>
+            <p>単一操作から無人ラボまで。公開事例を読んで、いまの自社ラボがどこにいるかを確認したメモです。</p>
+            <div class="blog-meta">
+              <span class="blog-tag">調査</span>
+              <span class="blog-tag">自動化</span>
+            </div>
+          </a>
+
+          <a class="blog-item" href="blog/what-is-auto-lab-loop.html">
+            <div class="when">2026-06 · biology_resarch</div>
+            <h3>Auto Lab Loop でいま回していること</h3>
+            <p>仮説 → 選抜 → 実験 → データ反映。自社ラボでどこまでを自分で持つかを、調査メモから要約しました。</p>
+            <div class="blog-meta">
+              <span class="blog-tag">運用</span>
+              <span class="blog-tag">Loop</span>
+            </div>
+          </a>
+
+          <a class="blog-item" href="blog/why-protocol-rag.html">
+            <div class="when">2026-08 · biology_resarch</div>
+            <h3>手順 RAG を公開した理由</h3>
+            <p>IFU・SOP・文献の食い違いを、検索と出典突合で先に潰す。最初の公開プロダクトにした経緯です。</p>
+            <div class="blog-meta">
+              <span class="blog-tag">製品</span>
+              <span class="blog-tag">手順</span>
+            </div>
+          </a>
+
+          <a class="blog-item" href="blog/experiment-os-notes.html">
+            <div class="when">2026-09 · biolab_UI</div>
+            <h3>Experiment OS をブラウザで持つ理由</h3>
+            <p>設計から承認、実行、解析までを一つの画面で回す。営業デモと自社ラボ運用の両方で使う土台です。</p>
+            <div class="blog-meta">
+              <span class="blog-tag">製品</span>
+              <span class="blog-tag">Experiment OS</span>
+            </div>
+          </a>
+
+          <a class="blog-item" href="blog/biospatial-os-notes.html">
+            <div class="when">2026 · biospatial</div>
+            <h3>見て、掴んで、置き直す — BioSpatial OS</h3>
+            <p>教示なしでプレートを掴むための空間認識メモ。失敗したら再観測してやり直す、という前提で書いています。</p>
+            <div class="blog-meta">
+              <span class="blog-tag">OSS</span>
+              <span class="blog-tag">ロボット</span>
+            </div>
+          </a>
+        </div>
+
+        <div class="note" style="margin-top:1.4rem;">
+          ここに載せる文章は、他社の論文やプレスを自社実績として見せるものではありません。出典がある場合は各記事内に書きます。数字や事例は公開情報の整理であり、当社の実験成果の主張ではありません。
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wrap">
+        <div class="section-head">
+          <span class="kicker">Repositories</span>
+          <h2>調査の置き場</h2>
+          <p>メモの元データは、テーマごとに別リポジトリにあります。サイトには読みやすい要約だけ載せています。</p>
+        </div>
+
+        <div class="repo-grid">
+          <article class="repo-card">
+            <span class="kicker">調査</span>
+            <h3>biology_resarch</h3>
+            <p>文献レビュー、市場メモ、Autolab Loop の整理、手順 RAG の公開面。</p>
+            <ul>
+              <li>研究自動化 4分類</li>
+              <li>市場・競合の読み込み</li>
+              <li>手順アプリの設計メモ</li>
+            </ul>
+          </article>
+          <article class="repo-card">
+            <span class="kicker">製品</span>
+            <h3>biolab_UI</h3>
+            <p>Experiment OS 本体。戦略メモ、GTM、PoC テンプレ、ベイズ最適化の検証記録。</p>
+            <ul>
+              <li>事業戦略ドキュメント</li>
+              <li>実験ワークフロー設計</li>
+              <li>配合最適化の実証メモ</li>
+            </ul>
+          </article>
+          <article class="repo-card">
+            <span class="kicker">OSS</span>
+            <h3>biospatial</h3>
+            <p>BioSpatial OS。RGB-D から 6DoF、把持、再試行までの垂直スライス。</p>
+            <ul>
+              <li><a href="https://github.com/kekeke29341/biospatial" target="_blank" rel="noopener noreferrer">GitHub リポジトリ</a></li>
+              <li>シミュレーション上の MVP</li>
+              <li>感知 → 計画 → 実行の契約</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section alt">
+      <div class="wrap panel" style="text-align:left;">
+        <span class="kicker">Contact</span>
+        <h2 style="margin:0.5rem 0;font-size:clamp(1.4rem,3vw,1.9rem);">メモの続きが必要なら、直接聞いてください。</h2>
+        <p style="color:var(--muted);margin:0 0 1rem;">「この分類の出典は？」「自社ラボではどこまで実装した？」など、短い質問でも構いません。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="contact.html">相談フォームへ</a>
+          <a class="btn btn-secondary" href="products.html">製品一覧へ</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>© 2026 カハール株式会社</div>
+      <div class="footer-links">
+        <a href="history.html">変遷</a>
+        <a href="products.html">製品</a>
+        <a href="blog.html">調査メモ</a>
+        <a href="about.html">会社概要</a>
+        <a href="members.html">メンバー</a>
+        <a href="contact.html">相談</a>
+      </div>
+    </div>
+  </footer>
+  <script src="js/site.js"></script>
+</body>
+</html>

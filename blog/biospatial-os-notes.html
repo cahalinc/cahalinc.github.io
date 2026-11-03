@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BioSpatial OS のメモ｜調査メモ｜カハール株式会社</title>
+  <meta name="description" content="見て、掴んで、置き直す。biospatial リポジトリで進めている空間認識ミドルウェアの説明。" />
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="canonical" href="https://cahalinc.github.io/blog/biospatial-os-notes.html" />
+  <link rel="stylesheet" href="../css/cahal.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../index.html">
+        <img src="../images/logo.png" alt="" />
+        カハール株式会社
+      </a>
+      <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false">メニュー</button>
+      <nav class="nav" data-nav>
+        <a href="../index.html">ホーム</a>
+        <a href="../history.html">変遷</a>
+        <a href="../products.html">製品</a>
+        <a class="is-active" href="../blog.html">調査メモ</a>
+        <a href="../about.html">会社概要</a>
+        <a href="../members.html">メンバー</a>
+        <a class="nav-cta" href="../contact.html">相談する</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="padding-bottom:1.2rem;">
+      <div class="wrap article">
+        <span class="kicker">調査メモ</span>
+        <h1>見て、掴んで、置き直す — BioSpatial OS</h1>
+        <p class="article-meta">
+          <span>2026年</span>
+          <span>元リポジトリ: biospatial（OSS）</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="section alt" style="padding-top:0;">
+      <div class="wrap article">
+        <article class="article-body">
+          <div class="callout">
+            当社が公開している OSS の説明です。他社のロボティクス論文を自社実験成果として掲載するものではありません。コードは GitHub で確認できます。
+          </div>
+
+          <p>
+            BioSpatial OS は、既存のベンチと汎用アームの上に載せるミドルウェアだ。自然言語のプロトコルと安価な RGB-D から、教示なしのピック＆プレースを目指す。失敗したら再観測してやり直す。その前提で設計している。
+          </p>
+
+          <h2>いまの MVP がやること</h2>
+          <p>
+            垂直スライスは一本だけだ。
+          </p>
+          <p>
+            「96ウェルプレートを掴んで、遠心機に置く。」
+          </p>
+          <p>
+            点群から 6DoF を出し、動作計画し、把持を確認し、置けたら検証する。ここまでをシミュレーション上で通す。
+          </p>
+
+          <h2>なぜこの切り方か</h2>
+          <p>
+            最終的には Isaac Sim や FoundationPose、SAM 2、ROS 2 / MoveIt 2 などを想定している。ただし MVP は Apple Silicon の Mac でも今日動くように、重い部品は差し替え可能なインタフェースの後ろに置いた。点群の扱い、6DoF、タスクグラフ、/tf 契約など、プロバイダに依存しない部分は本番でもそのまま持っていくつもりだ。
+          </p>
+
+          <h2>Loop のどこに効くか</h2>
+          <p>
+            手順が正しくても、腕がプレートを落とすとループは止まる。空間側の再試行があることで、「計算と実験」のあいだにある物理の失敗を、同じシステム内で扱えるようになる。
+          </p>
+          <p>
+            リポジトリ:
+            <a href="https://github.com/kekeke29341/biospatial" target="_blank" rel="noopener noreferrer">github.com/kekeke29341/biospatial</a>
+          </p>
+        </article>
+
+        <div class="article-nav">
+          <a href="experiment-os-notes.html">← 前: Experiment OS</a>
+          <a href="../blog.html">一覧に戻る →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>© 2026 カハール株式会社</div>
+      <div class="footer-links">
+        <a href="../blog.html">調査メモ</a>
+        <a href="../products.html">製品</a>
+        <a href="../contact.html">相談</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/site.js"></script>
+</body>
+</html>

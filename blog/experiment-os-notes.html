@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Experiment OS をブラウザで持つ理由｜調査メモ｜カハール株式会社</title>
+  <meta name="description" content="設計から承認、実行、解析まで。biolab_UI で積み上げた Experiment OS の整理メモ。" />
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="canonical" href="https://cahalinc.github.io/blog/experiment-os-notes.html" />
+  <link rel="stylesheet" href="../css/cahal.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../index.html">
+        <img src="../images/logo.png" alt="" />
+        カハール株式会社
+      </a>
+      <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false">メニュー</button>
+      <nav class="nav" data-nav>
+        <a href="../index.html">ホーム</a>
+        <a href="../history.html">変遷</a>
+        <a href="../products.html">製品</a>
+        <a class="is-active" href="../blog.html">調査メモ</a>
+        <a href="../about.html">会社概要</a>
+        <a href="../members.html">メンバー</a>
+        <a class="nav-cta" href="../contact.html">相談する</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="padding-bottom:1.2rem;">
+      <div class="wrap article">
+        <span class="kicker">調査メモ</span>
+        <h1>Experiment OS をブラウザで持つ理由</h1>
+        <p class="article-meta">
+          <span>2026年9月</span>
+          <span>元リポジトリ: biolab_UI</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="section alt" style="padding-top:0;">
+      <div class="wrap article">
+        <article class="article-body">
+          <div class="callout">
+            当社プロダクトの設計メモです。ベンチマーク数値は自社サンドボックスでの検証結果であり、他社論文の転載ではありません。
+          </div>
+
+          <p>
+            Experiment OS は、実験の「事務」と「実行」を同じ画面に載せるための土台だ。設計 → 検証 → 人間の承認 → 実行 → 監視 → 解析 → 次の実験提案。ここまでをブラウザで辿れるようにしている。
+          </p>
+
+          <h2>作らないものを先に決めた</h2>
+          <p>
+            ブートストラップ前提なので、最初から広げない。汎用クラウドラボ、セルフサーブ SaaS の過剰な作り込み、独自ハードの内製は後回し（またはやらない）。既製の分注機をアダプタで差し、売る対象は装置時間より「最適解に近づくまでの実験とデータ」に寄せる、という方針だ。
+          </p>
+
+          <h2>いまある土台</h2>
+          <ul>
+            <li>承認ゲート付きのエンドツーエンドワークフロー</li>
+            <li>不変イベントログと監査ログ</li>
+            <li>Robot / Instrument アダプタ（シミュレータ既定、実機は差し替え）</li>
+            <li>オフラインでも回せるデモ（営業用）</li>
+          </ul>
+
+          <h2>差分として埋めているもの</h2>
+          <p>
+            いちばん効くのは「次に何を試すか」だ。配合空間に対するベイズ最適化をエンジンとして繋ぎ、格子探索より少ない回数で良い点に寄れるかをサンドボックスで見ている。温度×pH の例では、格子45回相当の探索空間に対し BO 12回で真の最適近傍に到達する検証を記録した（自社テスト）。
+          </p>
+          <p>
+            実機接続は Opentrons 系を想定し、計測は最初は手動入力でもループが閉じるようにしている。カメラ CV は液体配合の楔では後回し。
+          </p>
+
+          <h2>元メモの場所</h2>
+          <p>
+            戦略一式は <code>biolab_UI/docs/strategy/</code>。実装とロードマップは同リポジトリの <code>docs/</code> 配下。このページは公開サイト向けの要約だ。
+          </p>
+        </article>
+
+        <div class="article-nav">
+          <a href="why-protocol-rag.html">← 前: 手順 RAG</a>
+          <a href="biospatial-os-notes.html">次: BioSpatial OS →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>© 2026 カハール株式会社</div>
+      <div class="footer-links">
+        <a href="../blog.html">調査メモ</a>
+        <a href="../products.html">製品</a>
+        <a href="../contact.html">相談</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/site.js"></script>
+</body>
+</html>

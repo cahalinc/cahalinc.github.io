@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>手順 RAG を公開した理由｜調査メモ｜カハール株式会社</title>
+  <meta name="description" content="IFU・SOP・文献の食い違いを先に潰す。手順 RAG を最初の公開プロダクトにした経緯。" />
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="canonical" href="https://cahalinc.github.io/blog/why-protocol-rag.html" />
+  <link rel="stylesheet" href="../css/cahal.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../index.html">
+        <img src="../images/logo.png" alt="" />
+        カハール株式会社
+      </a>
+      <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false">メニュー</button>
+      <nav class="nav" data-nav>
+        <a href="../index.html">ホーム</a>
+        <a href="../history.html">変遷</a>
+        <a href="../products.html">製品</a>
+        <a class="is-active" href="../blog.html">調査メモ</a>
+        <a href="../about.html">会社概要</a>
+        <a href="../members.html">メンバー</a>
+        <a class="nav-cta" href="../contact.html">相談する</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="padding-bottom:1.2rem;">
+      <div class="wrap article">
+        <span class="kicker">調査メモ</span>
+        <h1>手順 RAG を公開した理由</h1>
+        <p class="article-meta">
+          <span>2026年8月</span>
+          <span>元リポジトリ: biology_resarch</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="section alt" style="padding-top:0;">
+      <div class="wrap article">
+        <article class="article-body">
+          <div class="callout">
+            当社が公開している検索プロダクトの説明です。文献そのものの内容を、自社の実験成果として掲載するものではありません。検索結果には出典を示します。
+          </div>
+
+          <p>
+            実験の失敗は、派手な装置の不具合より先に、「手順の前提がずれていた」ことから起きることがある。IFU とラボ内 SOP、論文の Methods が、微妙に違う。熟練者は頭の中で突合しているが、その突合を毎回ゼロからやり直すのは重い。
+          </p>
+
+          <h2>何をする製品か</h2>
+          <p>
+            手順 RAG は、IFU・SOP・文献から実験手法を裏取りするための検索だ。答えらしき一文だけ出すのではなく、どこに書いてあったかを並べて確認できるようにしている。
+          </p>
+          <ul>
+            <li>出典突合</li>
+            <li>チェック用のデモ</li>
+            <li>ログイン後の自由検索</li>
+            <li>体験用のクエスト（ゲーム）</li>
+          </ul>
+          <p>
+            公開アプリ:
+            <a href="https://protocol-site-c7duz2ygeq-an.a.run.app/" target="_blank" rel="noopener noreferrer">protocol-site</a>
+          </p>
+
+          <h2>なぜ最初に出したか</h2>
+          <p>
+            Loop を回す前に、「いまやろうとしている手法は、どの文書と整合しているか」が分かっていないと、最適化の土台が砂になる。だから製品の並びでも、手順を先に置いた。
+          </p>
+          <p>
+            対象は生命科学の現場で、すでに手順を持っている人だ。初心者向けの教科書代わりではなく、熟練者の裏取り用、という位置づけで作っている。
+          </p>
+
+          <h2>元メモの場所</h2>
+          <p>
+            公開柱の整理や手順 KB の設計は <code>biology_resarch/docs/</code> 側にある。このページは「なぜ公開したか」だけを抜き出したものだ。
+          </p>
+        </article>
+
+        <div class="article-nav">
+          <a href="what-is-auto-lab-loop.html">← 前: Auto Lab Loop</a>
+          <a href="experiment-os-notes.html">次: Experiment OS →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>© 2026 カハール株式会社</div>
+      <div class="footer-links">
+        <a href="../blog.html">調査メモ</a>
+        <a href="../products.html">製品</a>
+        <a href="../contact.html">相談</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/site.js"></script>
+</body>
+</html>

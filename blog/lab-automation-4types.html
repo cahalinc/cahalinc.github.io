@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>実験自動化の4分類｜調査メモ｜カハール株式会社</title>
+  <meta name="description" content="Unit / Batch / Loop / Stream。公開情報を読んで整理した実験自動化の分類メモ。" />
+  <link rel="icon" href="../favicon.ico" />
+  <link rel="canonical" href="https://cahalinc.github.io/blog/lab-automation-4types.html" />
+  <link rel="stylesheet" href="../css/cahal.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="../index.html">
+        <img src="../images/logo.png" alt="" />
+        カハール株式会社
+      </a>
+      <button class="menu-toggle" type="button" data-menu-toggle aria-expanded="false">メニュー</button>
+      <nav class="nav" data-nav>
+        <a href="../index.html">ホーム</a>
+        <a href="../history.html">変遷</a>
+        <a href="../products.html">製品</a>
+        <a class="is-active" href="../blog.html">調査メモ</a>
+        <a href="../about.html">会社概要</a>
+        <a href="../members.html">メンバー</a>
+        <a class="nav-cta" href="../contact.html">相談する</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="padding-bottom:1.2rem;">
+      <div class="wrap article">
+        <span class="kicker">調査メモ</span>
+        <h1>実験自動化を、Unit / Batch / Loop / Stream で分ける</h1>
+        <p class="article-meta">
+          <span>2026年6月</span>
+          <span>元リポジトリ: biology_resarch</span>
+        </p>
+      </div>
+    </section>
+
+    <section class="section alt" style="padding-top:0;">
+      <div class="wrap article">
+        <article class="article-body">
+          <div class="callout">
+            これは公開製品資料やベンダー情報、レビュー論文を読んで整理したメモです。他社の研究成果を当社の実績として掲載するものではありません。
+          </div>
+
+          <p>
+            自動化の話は、いきなり「無人ラボ」から始まると話が飛ぶ。現場では、ピペット1本の精度から、24時間稼働の基盤まで層がある。自分たちの調査では、よく使う切り口として次の4つに分けた。
+          </p>
+
+          <h2>4つの型</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>型</th>
+                <th>何をしているか</th>
+                <th>ざっくりした限界</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Unit</td>
+                <td>単一操作の自動化（分注、希釈など）</td>
+                <td>精度は高いが、仕事の範囲が狭い</td>
+              </tr>
+              <tr>
+                <td>Batch</td>
+                <td>決まった手順をまとめて回す（HTS など）</td>
+                <td>変更のたびに組み直しが必要になりやすい</td>
+              </tr>
+              <tr>
+                <td>Loop</td>
+                <td>結果を見て次の実験を決め、また回す</td>
+                <td>AI とロボットの接続、監督の設計が要る</td>
+              </tr>
+              <tr>
+                <td>Stream</td>
+                <td>任意の実験を無人で連続実行する基盤</td>
+                <td>初期投資が大きく、まだ黎明期</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h2>いまの読み方</h2>
+          <p>
+            Unit と Batch は、すでに多くのラボで当たり前になっている。Loop は、ベイズ最適化や能動学習とロボット API を繋いだ事例が増え、実証から実用へ移りつつある、というのが公開情報を読んだときの印象だ。
+          </p>
+          <p>
+            Stream は Emerald Cloud Lab や Strateos のような「ラボをサービスとして借りる」形が先行している。一方で、初期コストとプロトコル変更の硬さは、いまでも大きい。
+          </p>
+
+          <h2>カハールの置き場所</h2>
+          <p>
+            当社は Stream を一社で抱え込もうとはしていない。自社ラボでは Loop を回す。手順の裏取り（手順 RAG）、実行の土台（Experiment OS）、空間操作（BioSpatial OS）はその部品だ。
+          </p>
+          <p>
+            「全部無人」より先に、「計算と実験が同じ日のうちに繋がるか」を見ている。
+          </p>
+
+          <h2>元メモの場所</h2>
+          <p>
+            詳細な出典リストと日次の文献メモは、ローカルの <code>biology_resarch/research/notes/research_automation_4types/</code> に置いてある。このページはその要約だけを公開用に書き直したものだ。
+          </p>
+        </article>
+
+        <div class="article-nav">
+          <a href="../blog.html">← 調査メモ一覧</a>
+          <a href="what-is-auto-lab-loop.html">次: Auto Lab Loop →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <div>© 2026 カハール株式会社</div>
+      <div class="footer-links">
+        <a href="../blog.html">調査メモ</a>
+        <a href="../products.html">製品</a>
+        <a href="../contact.html">相談</a>
+      </div>
+    </div>
+  </footer>
+  <script src="../js/site.js"></script>
+</body>
+</html>
