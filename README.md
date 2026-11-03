@@ -8,7 +8,8 @@
 - `about.html` — 会社概要
 - `history.html` — 会社変遷
 - `members.html` — メンバー（代表のみ）
-- `tech.html` — 技術資産（手順RAG / Experiment OS / BioSpatial OS）
+- `products.html` — 製品一覧（手順RAG / Experiment OS / BioSpatial OS / Autolab Loop）
+- `tech.html` — products.html へのリダイレクト
 - `contact.html` — お問い合わせ
 - `tools/studio.html` — SNS Content Studio（biolab_UI marketing 資産）
 

@@ -785,6 +785,51 @@ body {
 	text-decoration: none;
 }
 
+.product-meta {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 0.75rem;
+	margin-bottom: 0.35rem;
+}
+
+.product-status {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.28rem 0.65rem;
+	border-radius: 999px;
+	font-size: 0.72rem;
+	font-weight: 700;
+	letter-spacing: 0.04em;
+}
+
+.product-status.is-live {
+	background: #e5f7ed;
+	color: #1b7a45;
+}
+
+.product-status.is-demo {
+	background: #e8f2fb;
+	color: #1d5f96;
+}
+
+.product-status.is-oss {
+	background: #f1eefc;
+	color: #5b45a3;
+}
+
+.product-status.is-dev {
+	background: #f4f1ea;
+	color: #8a6a2f;
+}
+
+.product-who {
+	margin: 0 0 0.7rem !important;
+	font-size: 0.88rem !important;
+	font-weight: 600;
+	color: var(--cahal-accent) !important;
+}
+
 /* Header / footer on bright pages */
 .invert-header #logo .black-logo {
 	display: block !important;
