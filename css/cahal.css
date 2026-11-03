@@ -247,8 +247,14 @@ a:hover { opacity: 0.85; }
 .card.is-row {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  align-items: stretch;
 }
-.card.is-row .card-media { min-height: 220px; }
+.card.is-row .card-media { min-height: 280px; }
+.card.is-row .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 .card-media {
   min-height: 160px;
   background-size: cover;
@@ -339,6 +345,29 @@ a:hover { opacity: 0.85; }
   height: 100%;
   object-fit: cover;
   min-height: 300px;
+}
+.member-avatar {
+  display: grid;
+  place-items: center;
+  min-height: 300px;
+  background:
+    radial-gradient(circle at 30% 20%, #dff3f1 0%, transparent 55%),
+    linear-gradient(160deg, #e7f2f1 0%, #d5e8e6 100%);
+  border-right: 1px solid var(--line);
+}
+.member-avatar span {
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--accent);
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  box-shadow: var(--shadow);
 }
 .member-body { padding: 1.6rem; }
 .member-body h1,

@@ -1,11 +1,15 @@
-Background and project images sourced from Pexels (https://www.pexels.com, free license).
-Photo IDs used: 2280549, 2280571, 2280561, 2280547, 356040, 3639031, 3861969, 3993449,
-4386464, 5477894, 5722728, 6072890, 7372310, 7681060, 2156311.
+Site imagery (2026 redesign):
 
-Additional bright lab/contact images generated for site refresh:
-- images/lab-autoloop.jpg
-- images/lab-bench.jpg
-- images/contact-bright.jpg
-- images/about.jpg (updated to lab-autoloop)
+- images/site-lab-hero.jpg — generated lab automation scene (hero / about)
+- images/site-lab-bench.jpg — Unsplash wet-lab pipette photo (photo-1532187863486)
+- images/site-contact.jpg — generated consultation desk (no lab glassware)
+- images/product-protocol.jpg — generated protocol / SOP search scene
+- images/product-experiment.jpg — generated Experiment OS dashboard scene
+- images/product-biospatial.jpg — generated robot-arm + depth camera scene
+- images/product-autolab.jpg — generated Autolab Loop console scene
+- Member page uses initials monogram (no stock portrait)
 
-Original template images backed up under images_backup_20260521/.
+Legacy aliases kept for compatibility:
+- images/lab-autoloop.jpg, images/lab-bench.jpg, images/contact-bright.jpg, images/about.jpg
+
+Older template / Pexels assets remain in images/ for unused legacy pages only.
