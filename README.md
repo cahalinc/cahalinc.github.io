@@ -38,6 +38,8 @@ python3 -m http.server 8765
 - `biolab_UI` — Experiment OS
 - `biospatial` — BioSpatial OS
 
-## 関連サイト
+## プロジェクトページ
 
-- [Autolab Loop（会社ビジョン / 手順導線）](https://biolablooper.github.io/) — ソース: [`biolablooper/biolablooper.github.io`](https://github.com/biolablooper/biolablooper.github.io)（運営: カハール株式会社）
+会社本体はこのリポジトリ。Autolab Loop のビジョン・公開導線は別ホストのプロジェクトページです。
+
+- [Autolab Loop プロジェクトページ](https://biolablooper.github.io/) — ソース: [`biolablooper/biolablooper.github.io`](https://github.com/biolablooper/biolablooper.github.io)
