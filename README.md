@@ -1,12 +1,13 @@
 # カハール株式会社 公式サイト
 
-静的サイト（AI for Science / Auto Lab Loop）。
+静的サイト（手順RAG / Experiment OS / BioSpatial OS / Auto Lab Loop）。
+各ページは自社製品・公開アプリへの紐づけを前提にしています。
 
 ## 主なページ
 
-- `index.html` — トップ（技術・製品・受託の概要）
-- `products.html` — 製品一覧
-- `services.html` — AI受託開発（バイオインフォ / フィジカルAI）
+- `index.html` — トップ（技術層 → 製品 → 受託）
+- `products.html` — 製品一覧（#protocol / #experiment / #biospatial / #autolab）
+- `services.html` — 受託開発（自社スタック延長のバイオインフォ / フィジカルAI）
 - `about.html` — 会社概要
 - `message.html` — 代表挨拶
 - `contact.html` — お問い合わせ

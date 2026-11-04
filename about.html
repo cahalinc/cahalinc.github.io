@@ -7,7 +7,7 @@
   <meta name="description" content="カハール株式会社の会社概要。2017年11月設立、資本金100万円、代表1名。自社ラボで Auto Lab Loop を運用。" />
   <link rel="icon" href="favicon.ico" />
   <link rel="canonical" href="https://cahalinc.github.io/about.html" />
-  <link rel="stylesheet" href="css/cahal.css?v=20261104c" />
+  <link rel="stylesheet" href="css/cahal.css?v=20261104d" />
 </head>
 <body>
   <header class="site-header">
@@ -33,7 +33,7 @@
       <div class="wrap">
         <span class="kicker">About</span>
         <h1>会社概要</h1>
-        <p class="lead">登記・公開情報と一致する内容です。資本金とラボ設備投資は別の数字です。</p>
+        <p class="lead">登記・公開情報と一致する内容です。資本金とラボ設備投資は別の数字です。事業の実体は、自社製品と自社ラボにあります。</p>
       </div>
     </section>
 
@@ -57,7 +57,7 @@
             <dt>所在地</dt>
             <dd>〒105-0001 東京都港区虎ノ門4-1-1 東京ワールドゲート 23F</dd>
             <dt>事業内容</dt>
-            <dd>自社ラボでの Auto Lab Loop 運用、biology × AI の研究開発、技術相談・共同研究</dd>
+            <dd>手順RAG・Experiment OS・BioSpatial OS の開発、自社ラボでの Auto Lab Loop 運用、技術相談・共同研究・受託開発</dd>
           </dl>
         </div>
         <div>
@@ -67,7 +67,10 @@
           <div class="panel" style="margin-top:1rem;">
             <h3>Auto Lab Loop とは</h3>
             <p>設計候補の生成、性質予測、能動学習による選抜、実験、データ取り込みを反復する運用です。当社はこれを自社ラボで回し、相談・共同研究でも同じ視点で伴走します。</p>
-            <a class="btn btn-primary" href="contact.html">ラボ活用の相談</a>
+            <div class="hero-actions" style="margin-top:0.9rem;">
+              <a class="btn btn-primary" href="contact.html">ラボ活用の相談</a>
+              <a class="btn btn-secondary" href="https://biolablooper.github.io/" target="_blank" rel="noopener noreferrer">プロジェクトページ</a>
+            </div>
           </div>
         </div>
       </div>
@@ -76,30 +79,73 @@
     <section class="section">
       <div class="wrap">
         <div class="section-head">
-          <span class="kicker">Focus</span>
-          <h2>いま見ている領域</h2>
+          <span class="kicker">Focus × Products</span>
+          <h2>いま見ている領域と、対応する製品</h2>
         </div>
         <div class="cards-3">
           <article class="card">
             <div class="card-body">
               <h3>計算と実験の連携</h3>
               <p>設計・予測・選抜・実験データのフィードバックを一連の流れとして捉え、自社ラボ運用に活かします。</p>
+              <div class="stack-bind stack-bind--compact">
+                <p class="stack-bind-label">対応製品</p>
+                <ul class="stack-bind-list">
+                  <li>
+                    <div>
+                      <strong>Experiment OS</strong>
+                      <span class="stack-role">設計〜解析</span>
+                    </div>
+                    <a class="chip" href="products.html#experiment">詳細</a>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>Autolab Loop</strong>
+                      <span class="stack-role">上位ループ</span>
+                    </div>
+                    <a class="chip" href="products.html#autolab">詳細</a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </article>
           <article class="card">
             <div class="card-body">
               <h3>手順の裏取り</h3>
-              <p>文献や SOP と実際の操作がずれないよう、手順検索と出典突合を製品として持っています。</p>
+              <p>文献や SOP と実際の操作がずれないよう、出典つき手順検索を製品として持っています。</p>
+              <div class="stack-bind stack-bind--compact">
+                <p class="stack-bind-label">対応製品</p>
+                <ul class="stack-bind-list">
+                  <li>
+                    <div>
+                      <strong>手順 RAG</strong>
+                      <span class="stack-role">公開アプリ</span>
+                    </div>
+                    <a class="chip" href="https://protocol-site-c7duz2ygeq-an.a.run.app/" target="_blank" rel="noopener noreferrer">アプリ</a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </article>
           <article class="card">
             <div class="card-body">
               <h3>ラボの空間操作</h3>
               <p>見て、掴んで、置き直す。失敗したらやり直す空間認識を、自動化の土台として積み上げています。</p>
+              <div class="stack-bind stack-bind--compact">
+                <p class="stack-bind-label">対応製品</p>
+                <ul class="stack-bind-list">
+                  <li>
+                    <div>
+                      <strong>BioSpatial OS</strong>
+                      <span class="stack-role">OSS</span>
+                    </div>
+                    <a class="chip" href="https://github.com/kekeke29341/biospatial" target="_blank" rel="noopener noreferrer">GitHub</a>
+                  </li>
+                </ul>
+              </div>
             </div>
           </article>
         </div>
-        <p style="margin-top:1.2rem;"><a href="products.html">製品を見る</a>　／　<a href="services.html">AI受託開発</a>　／　<a href="message.html">代表挨拶</a>　／　<a href="https://biolablooper.github.io/" target="_blank" rel="noopener noreferrer">Autolab Loop プロジェクトページ</a></p>
+        <p style="margin-top:1.2rem;"><a href="products.html">製品を見る</a>　／　<a href="services.html">受託開発</a>　／　<a href="message.html">代表挨拶</a></p>
       </div>
     </section>
   </main>

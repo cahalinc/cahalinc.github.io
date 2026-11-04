@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>カハール株式会社｜Biology × AI の研究開発</title>
-  <meta name="description" content="カハール株式会社。手順の裏取り、実験OS、空間認識を自社で積み上げ、自社ラボで Auto Lab Loop を回す研究開発会社です。" />
+  <title>カハール株式会社｜手順RAG・実験OS・空間認識</title>
+  <meta name="description" content="IFU/SOPの出典突合、実験OS、RGB-D空間認識。自社ラボで Auto Lab Loop を回す研究開発会社です。" />
   <link rel="icon" href="favicon.ico" />
   <link rel="canonical" href="https://cahalinc.github.io/" />
-  <link rel="stylesheet" href="css/cahal.css?v=20261104c" />
+  <link rel="stylesheet" href="css/cahal.css?v=20261104d" />
 </head>
 <body>
   <header class="site-header">
@@ -38,11 +38,11 @@
         <p class="brand-mark">カハール株式会社</p>
         <h1>計算可能な実験を、<br>自社ラボから積み上げる。</h1>
         <p class="lead lead--on-dark">
-          手順の裏取り、実験の実行、空間での操作までを自社で開発し、Auto Lab Loop として回しています。
+          IFU・SOP・文献の裏取りから、実験の実行、RGB-D での器具操作まで。汎用のチャット基盤ではなく、生命科学ラボの手順と実機に閉じたソフトウェアを自社で持っています。
         </p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="products.html">製品を見る</a>
-          <a class="btn btn-ghost" href="contact.html">お問い合わせ</a>
+          <a class="btn btn-ghost" href="https://protocol-site-c7duz2ygeq-an.a.run.app/" target="_blank" rel="noopener noreferrer">手順 RAG を開く</a>
         </div>
       </div>
     </section>
@@ -50,31 +50,35 @@
     <section class="section">
       <div class="wrap">
         <div class="section-head">
-          <span class="kicker">Technology</span>
+          <span class="kicker">Stack</span>
           <h2>手順から実機まで、垂直に持つ。</h2>
-          <p>文献の正しさ、実験の実行、器具の操作。ばらばらの部品ではなく、同じループを閉じるための技術層です。</p>
+          <p>層ごとに自社製品があります。クリックで詳細とアプリへ。</p>
         </div>
         <div class="tech-layers">
-          <article class="tech-layer">
+          <a class="tech-layer" href="products.html#protocol">
             <span class="tech-n">01</span>
             <h3>手順の根拠</h3>
             <p>IFU・SOP・文献から、実験手法を出典つきで裏取りします。</p>
-          </article>
-          <article class="tech-layer">
+            <span class="tech-more">手順 RAG →</span>
+          </a>
+          <a class="tech-layer" href="products.html#experiment">
             <span class="tech-n">02</span>
             <h3>実験の実行</h3>
-            <p>設計から承認、実行、解析までをブラウザ上の実験OSで回します。</p>
-          </article>
-          <article class="tech-layer">
+            <p>設計 → 承認 → 実行 → 解析を、ブラウザ上の実験OSで回します。</p>
+            <span class="tech-more">Experiment OS →</span>
+          </a>
+          <a class="tech-layer" href="products.html#biospatial">
             <span class="tech-n">03</span>
             <h3>空間の操作</h3>
-            <p>見て、掴んで、置き直す。失敗したら再観測してやり直す空間認識です。</p>
-          </article>
-          <article class="tech-layer">
+            <p>見て、掴んで、置き直す。失敗したら再観測してやり直します。</p>
+            <span class="tech-more">BioSpatial OS →</span>
+          </a>
+          <a class="tech-layer" href="products.html#autolab">
             <span class="tech-n">04</span>
             <h3>自社ラボ</h3>
             <p>約1,000万円で整備したラボで、計算と実験のループを自社でも閉じます。</p>
-          </article>
+            <span class="tech-more">Autolab Loop →</span>
+          </a>
         </div>
       </div>
     </section>
@@ -84,7 +88,7 @@
         <div class="section-head">
           <span class="kicker">Products</span>
           <h2>同じループを構成する製品群</h2>
-          <p>公開中のものから開発中のものまで、いずれも Auto Lab Loop の部品です。</p>
+          <p>公開中のものから開発中のものまで。いずれも Auto Lab Loop の部品です。</p>
         </div>
         <div class="cards-3 cards-3--4">
           <article class="card">
@@ -92,9 +96,10 @@
             <div class="card-body">
               <div class="meta-row"><span class="kicker">手順</span><span class="status live">公開中</span></div>
               <h3>手順 RAG</h3>
-              <p>実験手法を裏取りするための検索プロダクト。</p>
+              <p>IFU / SOP / 文献の出典突合。推測ではなく、書いてある場所を並べます。</p>
               <div class="card-links">
                 <a class="chip" href="https://protocol-site-c7duz2ygeq-an.a.run.app/" target="_blank" rel="noopener noreferrer">アプリ</a>
+                <a class="chip" href="products.html#protocol">詳細</a>
               </div>
             </div>
           </article>
@@ -103,9 +108,10 @@
             <div class="card-body">
               <div class="meta-row"><span class="kicker">実行</span><span class="status demo">デモ可</span></div>
               <h3>Experiment OS</h3>
-              <p>設計から解析までをブラウザで回す実験OS。</p>
+              <p>設計から解析まで。シミュレータでも一連の流れを見せられます。</p>
               <div class="card-links">
-                <a class="chip" href="contact.html">デモ相談</a>
+                <a class="chip" href="contact.html?topic=demo">デモ相談</a>
+                <a class="chip" href="products.html#experiment">詳細</a>
               </div>
             </div>
           </article>
@@ -114,9 +120,10 @@
             <div class="card-body">
               <div class="meta-row"><span class="kicker">操作</span><span class="status oss">OSS</span></div>
               <h3>BioSpatial OS</h3>
-              <p>ティーチングなしのピック＆プレースを目指す空間認識。</p>
+              <p>RGB-D と自然言語指示。ティーチングなしのピック＆プレースを目指します。</p>
               <div class="card-links">
                 <a class="chip" href="https://github.com/kekeke29341/biospatial" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a class="chip" href="products.html#biospatial">詳細</a>
               </div>
             </div>
           </article>
@@ -125,9 +132,10 @@
             <div class="card-body">
               <div class="meta-row"><span class="kicker">束ねる</span><span class="status dev">開発中</span></div>
               <h3>Autolab Loop</h3>
-              <p>上位の実行OS。ビジョンはプロジェクトページにあります。</p>
+              <p>上記を束ねる上位実行OS。ビジョンはプロジェクトページにあります。</p>
               <div class="card-links">
-                <a class="chip" href="https://biolablooper.github.io/" target="_blank" rel="noopener noreferrer">プロジェクトページ</a>
+                <a class="chip" href="https://biolablooper.github.io/" target="_blank" rel="noopener noreferrer">プロジェクト</a>
+                <a class="chip" href="products.html#autolab">詳細</a>
               </div>
             </div>
           </article>
@@ -140,21 +148,21 @@
       <div class="wrap">
         <div class="section-head">
           <span class="kicker">Approach</span>
-          <h2>最先端を、自社で実装する。</h2>
-          <p>論文や構想だけで終わらせず、自社ラボとソフトウェアで検証できる形に落とします。</p>
+          <h2>論文の話で止めず、ラボで測る。</h2>
+          <p>汎用モデルのデモではなく、手順パラメータ・アッセイ結果・実機ログで判断できる形に落とします。</p>
         </div>
         <div class="strength-grid">
           <article class="strength">
             <h3>出典のある手順</h3>
-            <p>LLM の推測ではなく、公開文献から逐語で裏取りしたパラメータだけを扱います。</p>
+            <p>LLM の推測ではなく、公開文献から逐語で裏取りしたパラメータだけを扱います。<a href="products.html#protocol">手順 RAG</a></p>
           </article>
           <article class="strength">
             <h3>自社ラボでの実測</h3>
-            <p>設計・選抜・実験・データ反映を、外注前提ではなく自社設備でも回せます。</p>
+            <p>設計・選抜・実験・データ反映を、外注前提ではなく自社設備でも回せます。<a href="products.html#autolab">Autolab Loop</a></p>
           </article>
           <article class="strength">
             <h3>ソフトウェアと実機の接続</h3>
-            <p>実験OSと空間認識を、同じ Auto Lab Loop の中でつなぐことを目標にしています。</p>
+            <p>実験OSと空間認識を、同じループの中でつなぐことを目標にしています。<a href="products.html#biospatial">BioSpatial OS</a></p>
           </article>
         </div>
       </div>
@@ -164,8 +172,8 @@
       <div class="wrap">
         <div class="section-head">
           <span class="kicker">Services</span>
-          <h2>AI受託開発も行っています。</h2>
-          <p>製品とは別に、御社課題向けの開発を請け負います。軸はバイオインフォマティクスとフィジカルAIです。</p>
+          <h2>受託も、自社製品の延長線上で。</h2>
+          <p>ゼロからの「なんでもAI」ではありません。手順KB・実験OS・空間認識の土台を、御社データと実機に合わせて伸ばします。</p>
         </div>
         <div class="cards-3" style="grid-template-columns:repeat(2,minmax(0,1fr));">
           <article class="card">
@@ -173,36 +181,75 @@
             <div class="card-body">
               <span class="kicker">Bioinformatics</span>
               <h3>バイオインフォ受託</h3>
-              <p>設計・予測・解析パイプライン。次の実験判断につながる形まで落とします。</p>
-              <div class="card-links">
-                <a class="chip" href="services.html#bioinfo">詳細を見る</a>
+              <p>設計・予測・アッセイ解析。Experiment OS / 手順 RAG の延長でパイプラインを切ります。</p>
+              <div class="stack-bind stack-bind--compact">
+                <p class="stack-bind-label">土台にする製品</p>
+                <ul class="stack-bind-list">
+                  <li>
+                    <div>
+                      <strong>Experiment OS</strong>
+                      <span class="stack-role">設計〜解析の実行面</span>
+                    </div>
+                    <a class="chip" href="products.html#experiment">詳細</a>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>手順 RAG</strong>
+                      <span class="stack-role">IFU / SOP 出典突合</span>
+                    </div>
+                    <a class="chip" href="https://protocol-site-c7duz2ygeq-an.a.run.app/" target="_blank" rel="noopener noreferrer">アプリ</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-links" style="margin-top:0.9rem;">
+                <a class="chip" href="services.html#bioinfo">受託の詳細</a>
               </div>
             </div>
           </article>
           <article class="card">
             <div class="card-media" style="background-image:url(images/product-biospatial.jpg)"></div>
             <div class="card-body">
-              <span class="kicker">Physical AI</span>
+              <span class="kicker">Lab robotics</span>
               <h3>フィジカルAI受託</h3>
-              <p>認識・把持・機器連携。失敗したら再観測してやり直す操作フローを作ります。</p>
-              <div class="card-links">
-                <a class="chip" href="services.html#physical-ai">詳細を見る</a>
+              <p>認識・把持・機器連携。BioSpatial OS と実験OSをつなぐ検証から始めます。</p>
+              <div class="stack-bind stack-bind--compact">
+                <p class="stack-bind-label">土台にする製品</p>
+                <ul class="stack-bind-list">
+                  <li>
+                    <div>
+                      <strong>BioSpatial OS</strong>
+                      <span class="stack-role">RGB-D・把持・再試行</span>
+                    </div>
+                    <a class="chip" href="https://github.com/kekeke29341/biospatial" target="_blank" rel="noopener noreferrer">GitHub</a>
+                  </li>
+                  <li>
+                    <div>
+                      <strong>Experiment OS</strong>
+                      <span class="stack-role">プロトコル承認と実行ログ</span>
+                    </div>
+                    <a class="chip" href="products.html#experiment">詳細</a>
+                  </li>
+                </ul>
+              </div>
+              <div class="card-links" style="margin-top:0.9rem;">
+                <a class="chip" href="services.html#physical-ai">受託の詳細</a>
               </div>
             </div>
           </article>
         </div>
-        <p style="margin-top:1.2rem;"><a href="services.html">AI受託開発の全体へ</a></p>
+        <p style="margin-top:1.2rem;"><a href="services.html">受託開発の全体へ</a></p>
       </div>
     </section>
 
     <section class="section">
       <div class="wrap panel panel--cta">
         <span class="kicker">Contact</span>
-        <h2>技術相談・共同研究・受託</h2>
-        <p>デモの見せ方、PoC の切り方、自社ラボ連携まで、代表が直接返します。採用のご案内はありません。</p>
+        <h2>デモ・共同研究・受託</h2>
+        <p>手順 RAG の触り方、Experiment OS のデモ、BioSpatial の検証切り口まで、代表が直接返します。</p>
         <div class="hero-actions">
           <a class="btn btn-primary" href="contact.html">お問い合わせ</a>
-          <a class="btn btn-secondary" href="services.html">AI受託開発</a>
+          <a class="btn btn-secondary" href="products.html">製品一覧</a>
+          <a class="btn btn-secondary" href="services.html">受託開発</a>
         </div>
       </div>
     </section>

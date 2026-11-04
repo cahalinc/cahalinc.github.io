@@ -241,6 +241,98 @@ a:hover { opacity: 0.85; }
   margin-bottom: 0.55rem;
 }
 .service-list li:last-child { margin-bottom: 0; }
+
+#protocol,
+#experiment,
+#biospatial,
+#autolab,
+#bioinfo,
+#physical-ai {
+  scroll-margin-top: 5.5rem;
+}
+
+/* Product / stack binding — ties pages to real apps */
+.stack-bind {
+  margin-top: 1.4rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  background: var(--surface);
+  border-radius: 12px;
+}
+.stack-bind-label {
+  margin: 0 0 0.75rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  text-transform: uppercase;
+}
+.stack-bind-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.7rem;
+}
+.stack-bind-list li {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.35rem 0.8rem;
+  align-items: center;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid var(--line);
+}
+.stack-bind-list li:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+.stack-bind-list strong {
+  display: block;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+.stack-bind-list .stack-role {
+  display: block;
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.stack-bind-list .chip { margin: 0; white-space: nowrap; }
+.stack-bind--compact {
+  margin-top: 1rem;
+}
+.stack-bind--compact .stack-bind-list {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 720px) {
+  .stack-bind-list--2 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .stack-bind-list--2 li {
+    border-bottom: 0;
+    padding: 0.85rem 1rem;
+    background: var(--bg);
+    border-radius: 10px;
+  }
+}
+.tech-layer {
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+a.tech-layer:hover {
+  opacity: 1;
+  border-color: var(--accent);
+  box-shadow: var(--shadow);
+}
+a.tech-layer .tech-more {
+  display: inline-block;
+  margin-top: 0.55rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--accent);
+}
 .kicker {
   display: inline-flex;
   align-items: center;
