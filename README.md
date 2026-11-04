@@ -37,3 +37,7 @@ python3 -m http.server 8765
 - `biology_resarch` — 手順 RAG / Autolab 公開面
 - `biolab_UI` — Experiment OS
 - `biospatial` — BioSpatial OS
+
+## 関連サイト
+
+- [Autolab Loop（会社ビジョン / 手順導線）](https://biolablooper.github.io/) — ソース: [`biolablooper/biolablooper.github.io`](https://github.com/biolablooper/biolablooper.github.io)（運営: カハール株式会社）
