@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>相談｜カハール株式会社</title>
-  <meta name="description" content="自社ラボの Auto Lab Loop、製品デモ、共同研究の相談。案件化前でも構いません。代表が直接返信します。" />
+  <title>お問い合わせ｜カハール株式会社</title>
+  <meta name="description" content="カハール株式会社へのお問い合わせ。製品デモ、共同研究、技術相談。内容が固まっていなくても構いません。" />
   <link rel="icon" href="favicon.ico" />
   <link rel="canonical" href="https://cahalinc.github.io/contact.html" />
   <link rel="stylesheet" href="css/cahal.css" />
@@ -31,53 +31,68 @@
     <section class="hero" style="padding-bottom:1.5rem;">
       <div class="wrap">
         <span class="kicker">Contact</span>
-        <h1>相談フォーム</h1>
-        <p class="lead">箇条書きで構いません。いま困っていること・知りたいことをそのまま書いてください。</p>
-        <div class="reassure">
-          <span>目安：1〜2営業日で返信</span>
-          <span>秘密保持の相談可</span>
-        </div>
+        <h1>まずは、気軽に話しませんか。</h1>
+        <p class="lead">「うちの課題でも使える？」の一言で大丈夫です。製品デモから共同研究まで、内容が固まっていなくてもお気軽にどうぞ。</p>
       </div>
     </section>
 
     <section class="section alt">
       <div class="wrap contact-layout">
-        <div>
-          <div class="hero-visual">
-            <img src="images/site-contact.jpg" alt="相談のイメージ写真" />
+        <aside class="contact-aside">
+          <p class="kicker">ご相談の例</p>
+          <ul class="contact-examples" id="topic-examples">
+            <li data-id="demo"><strong>製品デモを見たい</strong><span>手順 RAG / Experiment OS のデモ・トライアル</span></li>
+            <li data-id="collab"><strong>共同研究を相談したい</strong><span>アカデミア・企業との共同研究 / 実証</span></li>
+            <li data-id="lab"><strong>自社ラボ連携を知りたい</strong><span>Auto Lab Loop・PoC の切り方</span></li>
+            <li data-id="other"><strong>受託・その他</strong><span>技術相談、取材など</span></li>
+          </ul>
+          <div class="panel" style="margin-top:1.2rem;">
+            <p style="margin:0;">フォームからお気軽にどうぞ。</p>
+            <p style="margin:0.55rem 0 0;color:var(--muted);font-size:0.9rem;">通常 1〜2 営業日以内に、代表が直接ご返信します。</p>
+            <p style="margin:0.9rem 0 0;font-size:0.88rem;color:var(--muted);">〒105-0001 東京都港区虎ノ門4-1-1<br>東京ワールドゲート 23F</p>
           </div>
-          <div class="panel" style="margin-top:1rem;">
-            <h3>こんな相談が多いです</h3>
-            <p>・手順RAGや Experiment OS のデモが見たい<br>・自社ラボ連携の PoC を切りたい<br>・共同研究の種があるが、まず話を聞きたい</p>
-            <p style="margin-bottom:0;">メールでも構いません。<br><a href="mailto:keiohigh2nd@gmail.com">keiohigh2nd@gmail.com</a></p>
-            <p style="margin:0.8rem 0 0;font-size:0.9rem;">〒105-0001 東京都港区虎ノ門4-1-1<br>東京ワールドゲート 23F</p>
-          </div>
-        </div>
+        </aside>
 
-        <div class="panel">
-          <div id="message" role="status" aria-live="polite"></div>
+        <div class="panel contact-panel">
+          <div id="thanks" class="contact-thanks" hidden>
+            <h3>送信しました。ありがとうございます。</h3>
+            <p>内容を確認し、通常 1〜2 営業日以内にご返信します。</p>
+            <button type="button" class="btn btn-secondary" id="again">続けて送る</button>
+          </div>
+
           <form class="form" id="contactform" novalidate>
+            <fieldset class="contact-topics">
+              <legend>ご相談の種別</legend>
+              <div class="contact-chips" role="radiogroup" aria-label="ご相談の種別">
+                <label class="contact-chip is-active"><input type="radio" name="topic" value="製品デモを見たい" checked />製品デモを見たい</label>
+                <label class="contact-chip"><input type="radio" name="topic" value="共同研究を相談したい" />共同研究を相談したい</label>
+                <label class="contact-chip"><input type="radio" name="topic" value="自社ラボ連携を知りたい" />自社ラボ連携を知りたい</label>
+                <label class="contact-chip"><input type="radio" name="topic" value="受託・その他" />受託・その他</label>
+              </div>
+            </fieldset>
+
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="honeypot" aria-hidden="true" />
+
             <label>
-              お名前
-              <input id="name" name="name" type="text" autocomplete="name" required />
+              お名前 <em>必須</em>
+              <input id="name" name="name" type="text" autocomplete="name" required placeholder="山田 太郎" />
             </label>
             <label>
-              メールアドレス
-              <input id="email" name="email" type="email" autocomplete="email" required />
+              ご所属
+              <input id="org" name="org" type="text" autocomplete="organization" placeholder="◯◯大学 / ◯◯株式会社" />
+            </label>
+            <label>
+              メールアドレス <em>必須</em>
+              <input id="email" name="email" type="email" autocomplete="email" required placeholder="you@example.com" />
             </label>
             <label>
               ご相談内容
-              <textarea id="comments" name="comments" required placeholder="例：Experiment OS のデモを見たい／手順RAGの導入可否／共同研究の相談"></textarea>
+              <textarea id="message" name="message" rows="5" placeholder="例: Experiment OS のデモを見たい / 手順 RAG の導入可否 / 共同研究の相談 など"></textarea>
             </label>
-            <label>
-              確認：1 + 3 = ?
-              <input id="verify" name="verify" type="text" inputmode="numeric" required />
-            </label>
-            <label class="honeypot" aria-hidden="true">
-              Leave blank
-              <input id="botcheck" name="botcheck" type="checkbox" tabindex="-1" autocomplete="off" />
-            </label>
+
+            <div id="status" role="status" aria-live="polite"></div>
             <button class="btn btn-primary" id="submit" type="submit">送信する</button>
+            <p class="contact-formnote">いただいた内容は代表に届きます。メールアドレスの公開はありません。</p>
           </form>
         </div>
       </div>
@@ -87,7 +102,7 @@
   <footer class="site-footer">
     <div class="wrap footer-inner">
       <div>© 2026 カハール株式会社</div>
-                  <div class="footer-links">
+      <div class="footer-links">
         <a href="products.html">製品</a>
         <a href="about.html">会社概要</a>
         <a href="message.html">代表挨拶</a>
@@ -101,74 +116,83 @@
   <script src="js/site.js"></script>
   <script>
   (function () {
-    var WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY';
-    var CONTACT_EMAIL = 'keiohigh2nd@gmail.com';
+    // FormSubmit — 静的サイト向け。初回のみ受信メール側で有効化確認が必要です。
+    var ENDPOINT = 'https://formsubmit.co/ajax/keiohigh2nd@gmail.com';
     var form = document.getElementById('contactform');
-    var msg = document.getElementById('message');
+    var thanks = document.getElementById('thanks');
+    var statusEl = document.getElementById('status');
     var submit = document.getElementById('submit');
+    var again = document.getElementById('again');
     if (!form) return;
 
-    function show(html) {
-      msg.innerHTML = html;
-      msg.style.marginBottom = '1rem';
+    document.querySelectorAll('.contact-chip').forEach(function (chip) {
+      chip.addEventListener('change', function () {
+        document.querySelectorAll('.contact-chip').forEach(function (c) { c.classList.remove('is-active'); });
+        chip.classList.add('is-active');
+      });
+    });
+
+    function showStatus(html, isError) {
+      statusEl.innerHTML = html;
+      statusEl.className = isError ? 'contact-status is-error' : 'contact-status';
     }
-    function err(t) {
-      show('<p style="color:#9b2c2c;margin:0;font-weight:700;">' + t + '</p>');
-    }
-    function success(name) {
-      show('<p style="color:var(--accent);margin:0;font-weight:700;">送信が完了しました。</p><p style="margin:0.4rem 0 0;color:var(--muted);">' + name + ' 様、ありがとうございます。代表より折り返します。</p>');
-      form.style.display = 'none';
-    }
-    function mailtoFallback(name, email, comments) {
-      var subject = '【お問い合わせ】' + name + ' 様より';
-      var body = 'お名前: ' + name + '\nメールアドレス: ' + email + '\n\nご相談内容:\n' + comments + '\n';
-      show('<p style="margin:0;font-weight:700;">メールソフトを起動します</p><p style="margin:0.4rem 0 0;color:var(--muted);">開いたメールをそのまま送信してください。起動しない場合は <a href="mailto:' + CONTACT_EMAIL + '">' + CONTACT_EMAIL + '</a> へ直接ご連絡ください。</p>');
-      window.location.href = 'mailto:' + CONTACT_EMAIL
-        + '?subject=' + encodeURIComponent(subject)
-        + '&body=' + encodeURIComponent(body);
-    }
+
+    again.addEventListener('click', function () {
+      thanks.hidden = true;
+      form.hidden = false;
+      form.reset();
+      document.querySelectorAll('.contact-chip').forEach(function (c, i) {
+        c.classList.toggle('is-active', i === 0);
+      });
+      showStatus('', false);
+    });
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var name = document.getElementById('name').value.trim();
+      var org = document.getElementById('org').value.trim();
       var email = document.getElementById('email').value.trim();
-      var comments = document.getElementById('comments').value.trim();
-      var verify = document.getElementById('verify').value.trim();
-      if (!name) { err('お名前をご入力ください。'); return; }
-      if (!email) { err('メールアドレスをご入力ください。'); return; }
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { err('メールアドレスの形式をご確認ください。'); return; }
-      if (!comments) { err('ご相談内容をご入力ください。'); return; }
-      if (verify !== '4') { err('計算（1 + 3）の答えをご入力ください。'); return; }
-      if (document.getElementById('botcheck').checked) { return; }
+      var message = document.getElementById('message').value.trim();
+      var topic = (form.querySelector('input[name="topic"]:checked') || {}).value || '';
+      var gotcha = form.querySelector('input[name="_gotcha"]').value;
 
-      if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY === 'YOUR_WEB3FORMS_ACCESS_KEY' || typeof fetch !== 'function') {
-        mailtoFallback(name, email, comments);
-        return;
+      if (gotcha) return;
+      if (!name) { showStatus('お名前をご入力ください。', true); return; }
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showStatus('メールアドレスの形式をご確認ください。', true); return;
       }
 
       submit.disabled = true;
-      show('<p style="margin:0;color:var(--muted);">送信中です…</p>');
-      fetch('https://api.web3forms.com/submit', {
+      showStatus('送信中です…', false);
+
+      fetch(ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject: '【お問い合わせ】' + name + ' 様より（カハール株式会社サイト）',
-          from_name: name,
-          name: name,
+          _subject: '【お問い合わせ】' + name + ' 様より（カハール株式会社）',
+          _template: 'table',
+          _captcha: 'false',
+          種別: topic,
+          お名前: name,
+          ご所属: org,
           email: email,
-          message: comments
+          ご相談内容: message || '（未記入）'
         })
       })
-      .then(function (r) { return r.json(); })
-      .then(function (data) {
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
+      .then(function (res) {
         submit.disabled = false;
-        if (data && data.success) success(name);
-        else mailtoFallback(name, email, comments);
+        if (res.ok || (res.data && res.data.success)) {
+          form.hidden = true;
+          thanks.hidden = false;
+          showStatus('', false);
+        } else {
+          showStatus('送信に失敗しました。時間をおいて再度お試しいただくか、直接メールでご連絡ください。', true);
+        }
       })
       .catch(function () {
         submit.disabled = false;
-        mailtoFallback(name, email, comments);
+        showStatus('送信に失敗しました。時間をおいて再度お試しください。', true);
       });
     });
   })();
