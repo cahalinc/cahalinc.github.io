@@ -4,14 +4,15 @@
 
 ## 主なページ
 
-- `index.html` — トップ
+- `index.html` — トップ（技術・製品中心。変遷や代表挨拶は載せない）
+- `products.html` — 製品一覧
 - `about.html` — 会社概要
-- `history.html` — 会社変遷
-- `members.html` — メンバー（代表のみ）
-- `products.html` — 製品一覧（手順RAG / Experiment OS / BioSpatial OS / Autolab Loop）
-- `blog.html` — 調査メモ（他リポジトリで調べたことの公開用要約）
-- `tech.html` — products.html へのリダイレクト
+- `message.html` — 代表挨拶
 - `contact.html` — お問い合わせ
+- `history.html` — 会社変遷（フッターから）
+- `blog.html` — 調査メモ（フッターから）
+- `members.html` — `message.html` へのリダイレクト
+- `tech.html` — products.html へのリダイレクト
 - `tools/studio.html` — SNS Content Studio（biolab_UI marketing 資産）
 
 ## 調査メモ
