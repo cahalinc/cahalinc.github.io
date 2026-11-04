@@ -5,7 +5,7 @@
   --bg-deep: #e8eef2;
   --surface: #ffffff;
   --ink: #15202b;
-  --muted: #5a6875;
+  --muted: #3f4d5a; /* keep readable on light backgrounds (WCAG-ish) */
   --line: rgba(21, 32, 43, 0.12);
   --accent: #0f6e6a;
   --accent-soft: #d9efed;
@@ -131,35 +131,37 @@ a:hover { opacity: 0.85; }
 .hero-bleed-veil {
   position: absolute;
   inset: 0;
+  /* Keep copy-side dark enough that white text stays readable over busy lab photos */
   background:
-    linear-gradient(90deg, rgba(12, 28, 32, 0.82) 0%, rgba(12, 28, 32, 0.55) 48%, rgba(12, 28, 32, 0.28) 100%),
-    linear-gradient(0deg, rgba(12, 28, 32, 0.55) 0%, transparent 45%);
+    linear-gradient(105deg, rgba(8, 18, 22, 0.92) 0%, rgba(8, 18, 22, 0.78) 42%, rgba(8, 18, 22, 0.35) 72%, rgba(8, 18, 22, 0.18) 100%),
+    linear-gradient(0deg, rgba(8, 18, 22, 0.55) 0%, transparent 50%);
 }
 .hero-home-copy {
   position: relative;
   z-index: 1;
   padding: 5.5rem 0 4rem;
   max-width: 40rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 8px 28px rgba(0, 0, 0, 0.35);
 }
 .brand-mark {
   margin: 0;
   font-size: clamp(1.05rem, 2.2vw, 1.35rem);
   font-weight: 800;
   letter-spacing: 0.04em;
+  color: #fff;
 }
 .hero--home h1 {
   color: #fff;
   margin-top: 0.85rem;
 }
-.lead--on-dark {
-  color: rgba(255, 255, 255, 0.84);
-}
 .btn-ghost {
-  background: transparent;
+  background: rgba(255, 255, 255, 0.08);
   color: #fff !important;
-  border-color: rgba(255, 255, 255, 0.45);
+  border-color: rgba(255, 255, 255, 0.7);
+  text-shadow: none;
 }
-.btn-ghost:hover { background: rgba(255, 255, 255, 0.08); opacity: 1; }
+.btn-ghost:hover { background: rgba(255, 255, 255, 0.16); opacity: 1; }
+.hero--home .btn-primary { text-shadow: none; }
 
 .tech-layers {
   display: grid;
@@ -253,6 +255,12 @@ a:hover { opacity: 0.85; }
   color: var(--muted);
   font-size: 1.05rem;
   max-width: 36rem;
+}
+/* Must beat .lead { color: var(--muted) } — same specificity otherwise loses */
+.hero--home .lead,
+.lead.lead--on-dark {
+  color: #fff;
+  font-weight: 500;
 }
 .hero-actions {
   display: flex;

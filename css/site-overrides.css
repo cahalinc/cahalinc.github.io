@@ -165,7 +165,19 @@ body {
 .light-content .hero-subtitle,
 .light-content .has-opacity,
 .light-content .plain-lead {
-	opacity: 0.92 !important;
+	/* Do not fade body copy — low opacity on busy photos kills readability */
+	opacity: 1 !important;
+}
+
+/* Photo heroes / captions: force solid white, never muted gray */
+.light-content #hero-caption .has-opacity,
+.light-content #hero-caption .hero-subtitle,
+.light-content .overlapping-image .has-opacity,
+.dark-content .has-opacity,
+.dark-content .hero-subtitle {
+	color: #fff !important;
+	text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 6px 20px rgba(0, 0, 0, 0.35);
+	opacity: 1 !important;
 }
 
 .light-content .button-border.outline,
