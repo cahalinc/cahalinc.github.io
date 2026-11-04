@@ -7,7 +7,7 @@
   <meta name="description" content="カハール株式会社へのお問い合わせ。製品デモ、共同研究、技術相談。内容が固まっていなくても構いません。" />
   <link rel="icon" href="favicon.ico" />
   <link rel="canonical" href="https://cahalinc.github.io/contact.html" />
-  <link rel="stylesheet" href="css/cahal.css?v=20261104b" />
+  <link rel="stylesheet" href="css/cahal.css?v=20261104c" />
 </head>
 <body>
   <header class="site-header">
@@ -20,6 +20,7 @@
       <nav class="nav" data-nav>
         <a href="index.html">ホーム</a>
         <a href="products.html">製品</a>
+        <a href="services.html">AI受託開発</a>
         <a href="about.html">会社概要</a>
         <a href="message.html">代表挨拶</a>
         <a class="nav-cta" href="contact.html">お問い合わせ</a>
@@ -42,9 +43,10 @@
           <p class="kicker">ご相談の例</p>
           <ul class="contact-examples" id="topic-examples">
             <li data-id="demo"><strong>製品デモを見たい</strong><span>手順 RAG / Experiment OS のデモ・トライアル</span></li>
+            <li data-id="bioinfo"><strong>バイオインフォ受託</strong><span>設計・予測・解析パイプラインの開発</span></li>
+            <li data-id="physical"><strong>フィジカルAI受託</strong><span>認識・把持・機器連携の開発</span></li>
             <li data-id="collab"><strong>共同研究を相談したい</strong><span>アカデミア・企業との共同研究 / 実証</span></li>
-            <li data-id="lab"><strong>自社ラボ連携を知りたい</strong><span>Auto Lab Loop・PoC の切り方</span></li>
-            <li data-id="other"><strong>受託・その他</strong><span>技術相談、取材など</span></li>
+            <li data-id="other"><strong>その他</strong><span>自社ラボ連携、取材など</span></li>
           </ul>
           <div class="panel" style="margin-top:1.2rem;">
             <p style="margin:0;">フォームからお気軽にどうぞ。</p>
@@ -65,9 +67,10 @@
               <legend>ご相談の種別</legend>
               <div class="contact-chips" role="radiogroup" aria-label="ご相談の種別">
                 <label class="contact-chip is-active"><input type="radio" name="topic" value="製品デモを見たい" checked />製品デモを見たい</label>
+                <label class="contact-chip"><input type="radio" name="topic" value="バイオインフォ受託" />バイオインフォ受託</label>
+                <label class="contact-chip"><input type="radio" name="topic" value="フィジカルAI受託" />フィジカルAI受託</label>
                 <label class="contact-chip"><input type="radio" name="topic" value="共同研究を相談したい" />共同研究を相談したい</label>
-                <label class="contact-chip"><input type="radio" name="topic" value="自社ラボ連携を知りたい" />自社ラボ連携を知りたい</label>
-                <label class="contact-chip"><input type="radio" name="topic" value="受託・その他" />受託・その他</label>
+                <label class="contact-chip"><input type="radio" name="topic" value="その他" />その他</label>
               </div>
             </fieldset>
 
@@ -102,8 +105,9 @@
   <footer class="site-footer">
     <div class="wrap footer-inner">
       <div>© 2026 カハール株式会社</div>
-      <div class="footer-links">
+            <div class="footer-links">
         <a href="products.html">製品</a>
+        <a href="services.html">AI受託開発</a>
         <a href="about.html">会社概要</a>
         <a href="message.html">代表挨拶</a>
         <a href="history.html">会社の変遷</a>
@@ -131,6 +135,24 @@
         chip.classList.add('is-active');
       });
     });
+
+    // ?topic=bioinfo | physical | demo | collab | other
+    var topicMap = {
+      bioinfo: 'バイオインフォ受託',
+      physical: 'フィジカルAI受託',
+      demo: '製品デモを見たい',
+      collab: '共同研究を相談したい',
+      other: 'その他'
+    };
+    var preset = topicMap[(new URLSearchParams(location.search).get('topic') || '').toLowerCase()];
+    if (preset) {
+      document.querySelectorAll('.contact-chip').forEach(function (chip) {
+        var input = chip.querySelector('input');
+        var on = input && input.value === preset;
+        if (input) input.checked = on;
+        chip.classList.toggle('is-active', on);
+      });
+    }
 
     function showStatus(html, isError) {
       statusEl.innerHTML = html;

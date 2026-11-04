@@ -4,8 +4,9 @@
 
 ## 主なページ
 
-- `index.html` — トップ（技術・製品中心。変遷や代表挨拶は載せない）
+- `index.html` — トップ（技術・製品・受託の概要）
 - `products.html` — 製品一覧
+- `services.html` — AI受託開発（バイオインフォ / フィジカルAI）
 - `about.html` — 会社概要
 - `message.html` — 代表挨拶
 - `contact.html` — お問い合わせ

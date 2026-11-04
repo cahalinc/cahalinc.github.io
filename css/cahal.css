@@ -231,6 +231,16 @@ a:hover { opacity: 0.85; }
   max-width: 40rem;
 }
 .message-body p:last-child { margin-bottom: 1.2rem; }
+
+.service-list {
+  margin: 0.6rem 0 0;
+  padding-left: 1.15rem;
+  color: var(--muted);
+}
+.service-list li {
+  margin-bottom: 0.55rem;
+}
+.service-list li:last-child { margin-bottom: 0; }
 .kicker {
   display: inline-flex;
   align-items: center;
