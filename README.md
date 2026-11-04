@@ -7,7 +7,7 @@
 
 - `index.html` — トップ（技術層 → 製品 → 受託）
 - `products.html` — 製品一覧（#protocol / #experiment / #biospatial / #autolab）
-- `services.html` — 受託開発（自社スタック延長のバイオインフォ / フィジカルAI）
+- `services.html` — 受託開発（自社スタック延長のバイオインフォ / ラボ自動化）
 - `about.html` — 会社概要
 - `message.html` — 代表挨拶
 - `contact.html` — お問い合わせ
