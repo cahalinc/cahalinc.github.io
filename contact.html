@@ -146,8 +146,8 @@
   <script src="js/site.js?v=20261104e"></script>
   <script>
   (function () {
-    // FormSubmit — 静的サイト向け。初回のみ受信メール側で有効化確認が必要です。
-    var ENDPOINT = 'https://formsubmit.co/ajax/keiohigh2nd@gmail.com';
+    var ACCESS_KEY = 'bd36b481-7015-40ca-8d48-b9ec804ae6b6';
+    var ENDPOINT = 'https://api.web3forms.com/submit';
     var form = document.getElementById('contactform');
     var thanks = document.getElementById('thanks');
     var statusEl = document.getElementById('status');
@@ -217,25 +217,25 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
         body: JSON.stringify({
-          _subject: '【お問い合わせ】' + name + ' 様より（カハール株式会社）',
-          _template: 'table',
-          _captcha: 'false',
-          種別: topic,
-          お名前: name,
-          ご所属: org,
+          access_key: ACCESS_KEY,
+          subject: '【お問い合わせ】' + name + ' 様より（カハール株式会社）',
+          from_name: name,
+          name: name,
+          company: org,
           email: email,
-          ご相談内容: message || '（未記入）'
+          message: message || '（未記入）',
+          service: topic || 'その他'
         })
       })
       .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, data: d }; }); })
       .then(function (res) {
         submit.disabled = false;
-        if (res.ok || (res.data && res.data.success)) {
+        if (res.ok && res.data && res.data.success) {
           form.hidden = true;
           thanks.hidden = false;
           showStatus('', false);
         } else {
-          showStatus('送信に失敗しました。時間をおいて再度お試しいただくか、直接メールでご連絡ください。', true);
+          showStatus('送信に失敗しました。時間をおいて再度お試しください。', true);
         }
       })
       .catch(function () {
